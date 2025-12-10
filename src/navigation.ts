@@ -170,11 +170,11 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/FarQR_com' },
+    { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@farqr.com' },
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/FARQR' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@FARQR' },
   ],
   footNote: `
   © 2025 FAR QR. Mã QR cá nhân hóa.
