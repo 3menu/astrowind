@@ -31,13 +31,21 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
   <div
     class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
-    <!-- Grid Links: Sửa thành 3 cột trên mọi thiết bị (col-span-4) -->
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+    <!-- Grid Links: 3 cột ngang nhau (col-span-4) -->
+    <div class="grid grid-cols-12 gap-2 sm:gap-4 py-8 md:py-12">
       {
-        links.map(({ title, links }) => (
-          /* col-span-4 giúp chia 12 phần thành 3 cột đều nhau (4x3=12) ngay trên mobile */
-          <div class="col-span-4 md:col-span-4 lg:col-span-4">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
+        links.map(({ title, links }, index) => (
+          <div 
+            class:list={[
+              "col-span-4", // Luôn chia 3 cột (4/12)
+              index === 0 ? "text-left" : "",   // Cột 1: Căn trái
+              index === 1 ? "text-center" : "", // Cột 2: Căn giữa
+              index === 2 ? "text-right" : ""   // Cột 3: Căn phải
+            ]}
+          >
+            <div class="dark:text-gray-300 font-bold mb-2">{title}</div>
+            
+            {/* Danh sách link chính của cột */}
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
                 {links.map(({ text, href, ariaLabel }) => (
@@ -53,14 +61,31 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
                 ))}
               </ul>
             )}
+
+            {/* ĐẶC BIỆT: Nếu là Cột 1 (index === 0) thì chèn Terms & Privacy xuống dưới */}
+            {index === 0 && secondaryLinks.length > 0 && (
+               <div class="mt-4 text-xs text-muted">
+                {secondaryLinks.map(({ text, href }, i) => (
+                  <>
+                    <a
+                      class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
+                      href={href}
+                      set:html={text}
+                    />
+                    {/* Thêm dấu chấm giữa các link */}
+                    {i !== secondaryLinks.length - 1 && ' · '}
+                  </>
+                ))}
+              </div>
+            )}
           </div>
         ))
       }
     </div>
 
-    <!-- Bottom Section: Căn giữa toàn bộ -->
-    <div class="flex flex-col items-center justify-center py-6 md:py-8 gap-6">
-      <!-- 1. Social Icons (Căn giữa) -->
+    <!-- Bottom Section: Social Icons & Copyright căn giữa -->
+    <div class="flex flex-col items-center justify-center py-6 md:py-8 gap-4 border-t border-gray-100 dark:border-slate-800">
+      <!-- 1. Social Icons -->
       {
         socialLinks?.length ? (
           <ul class="flex justify-center gap-1 rtl:gap-reverse">
@@ -82,24 +107,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         )
       }
 
-      <!-- 2. Secondary Links (Terms, Privacy) - Hiển thị lại ở đây và căn giữa -->
-      <div class="text-sm text-muted flex flex-wrap justify-center gap-4">
-        {
-          secondaryLinks.map(({ text, href }, index) => (
-            <>
-              <a
-                class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                href={href}
-                set:html={text}
-              />
-              {/* Thêm dấu chấm ngăn cách nếu không phải phần tử cuối (tùy chọn) */}
-              {index !== secondaryLinks.length - 1 && <span class="hidden sm:inline">·</span>}
-            </>
-          ))
-        }
-      </div>
-
-      <!-- 3. Copyright / Footnote (Cuối cùng, căn giữa) -->
+      <!-- 2. Copyright / Footnote -->
       <div class="text-sm text-center mr-4 dark:text-muted">
         <Fragment set:html={footNote} />
       </div>
