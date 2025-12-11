@@ -11,16 +11,16 @@ export const headerData = {
       links: [
         {
           text: 'Digital Menu & Pricelists',
-          href: '/services/digital-menu', // Trang giới thiệu dịch vụ tạo Menu
+          href: '/services/digital-menu', 
         },
         {
           text: 'Image QR',
-          href: '/services/image-qr', // Trang giới thiệu dịch vụ QR nghệ thuật
+          href: '/services/image-qr', 
         },
       ],
     },
     {
-      text: 'Showcase', // Nơi khoe các mẫu QR đẹp bạn đã làm
+      text: 'Showcase', 
       href: '/showcase',
     },
     {
