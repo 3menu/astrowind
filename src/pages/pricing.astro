@@ -1,8 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Pricing from '~/components/widgets/Pricing.astro';
+import Prices from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features3 from '~/components/widgets/Features3.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
@@ -14,111 +16,191 @@ const metadata = {
   <!-- HeroText Widget ******************* -->
 
   <HeroText
-    tagline="Premium Plans"
-    title="Upgrade your Digital Menu"
-    subtitle="Choose the plan that fits your business needs. Upgrade anytime during your trial."
+    tagline="Pricing"
+    title="Simple, Transparent Pricing"
+    subtitle="All premium plans include the same powerful features. Choose the duration that suits you best."
   />
 
   <!-- Pricing Widget ******************* -->
 
-  <Pricing
-    title="Flexible Subscription Options"
-    subtitle="All premium plans unlock full features: Unlimited items, priority support, and custom branding options."
+  <Prices
+    title="Premium Packages"
+    subtitle="Unlock the full potential of your Digital Menu"
     prices={[
       {
         title: '1 Month',
-        subtitle: 'Short-term',
-        price: '199k', // Bạn thay giá tiền của bạn vào đây
+        subtitle: 'Flexible start',
+        price: 9.90,
         period: '/mo',
         items: [
-          { description: 'Full Dashboard Access' },
-          { description: 'Real-time Menu Updates' },
-          { description: 'Priority Support' },
+          { description: 'Max 3000 Products' },
+          { description: 'Max 200 Categories' },
+          { description: 'Quick Updates (1-2 mins)' },
           { description: 'Remove FAR QR Branding' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Choose Monthly',
-          href: '#', // Link đến trang thanh toán của bạn
+          text: 'Buy Now',
+          href: '#', // Link thanh toán
         },
       },
       {
         title: '3 Months',
-        subtitle: 'Quarterly',
-        price: '549k',
+        subtitle: 'Quarterly Plan',
+        price: 26.90,
         period: '/3 mos',
         items: [
-          { description: 'Save 10% vs Monthly' },
-          { description: 'Full Dashboard Access' },
-          { description: 'Real-time Menu Updates' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Save ~10%' },
+          { description: 'Max 3000 Products' },
+          { description: 'Max 200 Categories' },
+          { description: 'Quick Updates (1-2 mins)' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Choose Quarterly',
+          text: 'Buy Now',
           href: '#',
         },
-        hasRibbon: true,
-        ribbonTitle: 'Popular',
       },
       {
         title: '6 Months',
         subtitle: 'Semi-Annual',
-        price: '999k',
+        price: 47.90,
         period: '/6 mos',
         items: [
-          { description: 'Save 15% vs Monthly' },
-          { description: 'Full Dashboard Access' },
-          { description: 'Real-time Menu Updates' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Save ~20%' },
+          { description: 'Max 3000 Products' },
+          { description: 'Max 200 Categories' },
+          { description: 'Quick Updates (1-2 mins)' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Choose 6 Months',
+          text: 'Buy Now',
           href: '#',
         },
       },
       {
         title: '1 Year',
-        subtitle: 'Best Value',
-        price: '1.8M',
+        subtitle: 'Most Economical',
+        price: 59.90,
         period: '/year',
         items: [
-          { description: 'Save 25% vs Monthly' },
-          { description: 'Full Dashboard Access' },
-          { description: 'Real-time Menu Updates' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Save ~50% (Best Value)' },
+          { description: 'Max 3000 Products' },
+          { description: 'Max 200 Categories' },
+          { description: 'Quick Updates (1-2 mins)' },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Choose Yearly',
+          text: 'Buy Now',
           href: '#',
         },
+        hasRibbon: true,
+        ribbonTitle: 'Save 50%',
       },
     ]}
   />
 
-  <!-- FAQs Widget: Giải thích về vụ cộng dồn ******************* -->
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Why upgrade to Premium?"
+    subtitle="Enhance your customer experience with professional tools"
+    columns={2}
+    items={[
+      {
+        title: 'High Capacity',
+        description: 'Manage up to 3000 products and 200 categories. Perfect for large menus and extensive pricelists.',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'Accumulative Time',
+        description: 'Buying a new package while another is active? No problem. The new duration is added to your remaining days.',
+        icon: 'tabler:calendar-plus',
+      },
+      {
+        title: 'Professional Look',
+        description: 'Remove the "Powered by FAR QR" branding from your menu footer for a cleaner look.',
+        icon: 'tabler:brand-pnpm',
+      },
+      {
+        title: 'Quick Sync',
+        description: 'Edit your menu on the dashboard, and customers see changes on their phones within 1-2 minutes.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Priority Support',
+        description: 'Get faster responses for any technical issues or account inquiries.',
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Secure Payments',
+        description: 'All transactions are processed securely. We do not store your credit card information.',
+        icon: 'tabler:shield-lock',
+      },
+    ]}
+    classes={{ container: 'max-w-5xl' }}
+  />
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="How to purchase"
+    tagline="Simple Process"
+    isReversed={true}
+    items={[
+      {
+        title: 'Step 1: Log In',
+        description: 'Access your account dashboard. If you are in a trial, your data is already there.',
+        icon: 'tabler:login',
+      },
+      {
+        title: 'Step 2: Select a Package',
+        description: 'Choose the duration (1 Month, 3 Months, etc.) that fits your budget.',
+        icon: 'tabler:click',
+      },
+      {
+        title: 'Step 3: Payment',
+        description: 'Complete the secure payment process.',
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: 'Step 4: Extension Activated',
+        description: 'Your account expiry date is automatically extended based on the package you bought.',
+        icon: 'tabler:circle-check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Steps image',
+    }}
+  />
+
+  <!-- FAQs Widget ******************* -->
 
   <FAQs
     title="Pricing FAQs"
-    subtitle="Everything you need to know about billing and trials."
+    subtitle="Important information about billing and subscriptions."
     columns={1}
     items={[
       {
-        title: 'What happens if I upgrade during my Free Trial?',
+        title: 'Can I switch plans later? (e.g., from 1 Month to 1 Year)',
         description:
-          "<strong>Good news!</strong> You won't lose any time. If you have remaining days on your 7-day trial and decide to buy a Premium package, those remaining days will be <strong>added</strong> to your purchased plan. <br/><br/><em>Example: You have 3 trial days left and buy a 1-Month plan. Your premium access will last for 1 Month + 3 Days.</em>",
+          "<strong>Yes, but with a specific rule:</strong> We do not swap or refund packages. Instead, we use an <strong>Accumulative</strong> system. If you buy a 1-Year package while you still have 10 days left on your Monthly plan, your account will have <strong>1 Year + 10 Days</strong> total. You never lose paid time.",
       },
       {
-        title: 'Can I switch plans later?',
+        title: 'Is there a limit on items?',
         description:
-          'Yes, you can upgrade to a longer-term plan at any time. The remaining value of your current plan will be credited towards the new one.',
+          'Yes, the current limit is 3,000 products and 200 category groups. This is sufficient for most restaurants, cafes, and retail shops.',
       },
       {
-        title: 'How do updates work?',
+        title: 'How fast do price changes update?',
         description:
-          'When you edit prices or items in the dashboard, changes appear on the customer view within 1-2 minutes. This ensures your menu loads fast for everyone.',
+          'Due to caching for performance optimization, updates to your menu (prices, images, names) typically appear on the customer side after a delay of <strong>1-2 minutes</strong>.',
+      },
+      {
+        title: 'What happens when my plan expires?',
+        description:
+          'Your menu will be paused and customers cannot view it. However, your data is kept safe for a grace period, allowing you to renew without losing your setup.',
       },
     ]}
   />
@@ -126,14 +208,14 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
+    title="Ready to organize your menu?"
+    subtitle="Start with a small package or save big with the annual plan."
     actions={[
       {
         variant: 'primary',
-        text: 'Contact Sales',
-        href: '/contact',
+        text: 'Go to Dashboard',
+        href: 'https://app.yourwebsite.com', // Thay link dashboard của bạn
       },
     ]}
-    title="Need a custom solution?"
-    subtitle="For enterprise chains or special requirements, contact us for a custom quote."
   />
 </Layout>
