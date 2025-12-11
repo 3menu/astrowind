@@ -18,16 +18,16 @@ const metadata = {
   <HeroText
     tagline="Pricing Plans"
     title="Choose your Growth Path"
-    subtitle="Flexible plans for every stage of your business. Upgrade anytime to increase your capacity."
+    subtitle="Flexible plans for every stage of your business. Upgrade anytime."
   />
 
   <!-- Pricing Widget ******************* -->
-  <!-- columns={2} sẽ chia layout thành 2 cột, tạo thành lưới 2x2 -->
+  <!-- columns={2} được set ở đây -->
   
   <Prices
     title="Premium Packages"
     subtitle="All plans include secure hosting and 24/7 support"
-    columns={2} 
+    columns={2}
     prices={[
       {
         title: 'Starter (1 Month)',
@@ -37,8 +37,8 @@ const metadata = {
         items: [
           { description: 'Max 500 Products' },
           { description: 'Max 30 Categories' },
-          { description: 'Quick Updates (1-2 mins)' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Bonus: 1 Free WiFi QR' }, // Đã thay thế theo yêu cầu
+          { description: 'Bonus: 1 Artistic Logo QR' }, // Đã thay thế theo yêu cầu
         ],
         callToAction: {
           target: '_blank',
@@ -54,8 +54,8 @@ const metadata = {
         items: [
           { description: 'Max 1,200 Products' },
           { description: 'Max 80 Categories' },
-          { description: 'Quick Updates (1-2 mins)' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Bonus: 1 Free WiFi QR' },
+          { description: 'Bonus: 1 Artistic Logo QR' },
         ],
         callToAction: {
           target: '_blank',
@@ -71,8 +71,8 @@ const metadata = {
         items: [
           { description: 'Max 2,200 Products' },
           { description: 'Max 150 Categories' },
-          { description: 'Quick Updates (1-2 mins)' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Bonus: 1 Free WiFi QR' },
+          { description: 'Bonus: 1 Artistic Logo QR' },
         ],
         callToAction: {
           target: '_blank',
@@ -82,14 +82,14 @@ const metadata = {
       },
       {
         title: 'Pro / Unlimited (1 Year)',
-        subtitle: 'Save ~50% (Best Value)',
+        subtitle: 'Save 50% - Best Value',
         price: 59.90,
         period: '/year',
         items: [
           { description: 'Max 3,000 Products' },
           { description: 'Max 200 Categories' },
-          { description: 'Priority Quick Updates' },
-          { description: 'Remove FAR QR Branding' },
+          { description: 'Bonus: 1 Free WiFi QR' },
+          { description: 'Bonus: 1 Artistic Logo QR' },
         ],
         callToAction: {
           target: '_blank',
@@ -97,7 +97,7 @@ const metadata = {
           href: '#',
         },
         hasRibbon: true,
-        ribbonTitle: 'Save 50% - Best Value',
+        ribbonTitle: 'Save 50%',
       },
     ]}
   />
@@ -120,14 +120,14 @@ const metadata = {
         icon: 'tabler:calendar-plus',
       },
       {
-        title: 'Brand Freedom',
-        description: 'All premium plans allow you to remove the "Powered by FAR QR" branding from your menu footer.',
-        icon: 'tabler:brand-pnpm',
+        title: 'Artistic Branding',
+        description: 'Every premium package comes with a free Artistic Logo QR generation request.',
+        icon: 'tabler:palette',
       },
       {
-        title: 'Quick Sync',
-        description: 'Updates to prices and items appear on customer phones within 1-2 minutes.',
-        icon: 'tabler:refresh',
+        title: 'WiFi Convenience',
+        description: 'We generate a high-quality WiFi QR for your shop to help customers connect easily.',
+        icon: 'tabler:wifi',
       },
     ]}
     classes={{ container: 'max-w-5xl' }}
@@ -147,7 +147,7 @@ const metadata = {
       },
       {
         title: 'Step 2: Choose Plan',
-        description: 'Select the package that fits your inventory size (500, 1200, 2200, or 3000 products).',
+        description: 'Select the package that fits your inventory size.',
         icon: 'tabler:click',
       },
       {
@@ -180,14 +180,14 @@ const metadata = {
           "Yes. Because our system is <strong>Accumulative</strong>, you simply buy the Pro package. Your account limits will increase to the Pro level immediately, and the 1 Year duration will be added to your remaining days.",
       },
       {
-        title: 'Why is there a product limit?',
+        title: 'How do I claim my Free Artistic QR?',
         description:
-          'Limits ensure the system runs fast for everyone. 3,000 products (Pro Plan) is optimized for high performance while covering the needs of large restaurants.',
+          'After purchasing a package, you will receive an email with a form to submit your logo and URL. Our design team will process it and send it back to you.',
       },
       {
-        title: 'Does "Quick Updates" mean instant?',
+        title: 'Does "Quick Updates" still apply?',
         description:
-          'It is very fast but not instant. There is a system delay of about <strong>1-2 minutes</strong> for changes to propagate to the public QR view.',
+          'Yes, although not listed in the package highlights, all premium plans benefit from our fast caching system (1-2 mins delay).',
       },
     ]}
   />
