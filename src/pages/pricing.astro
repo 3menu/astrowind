@@ -16,44 +16,46 @@ const metadata = {
   <!-- HeroText Widget ******************* -->
 
   <HeroText
-    tagline="Pricing"
-    title="Simple, Transparent Pricing"
-    subtitle="All premium plans include the same powerful features. Choose the duration that suits you best."
+    tagline="Pricing Plans"
+    title="Choose your Growth Path"
+    subtitle="Flexible plans for every stage of your business. Upgrade anytime to increase your capacity."
   />
 
   <!-- Pricing Widget ******************* -->
-
+  <!-- columns={2} sẽ chia layout thành 2 cột, tạo thành lưới 2x2 -->
+  
   <Prices
     title="Premium Packages"
-    subtitle="Unlock the full potential of your Digital Menu"
+    subtitle="All plans include secure hosting and 24/7 support"
+    columns={2} 
     prices={[
       {
-        title: '1 Month',
-        subtitle: 'Flexible start',
+        title: 'Starter (1 Month)',
+        subtitle: 'For Startups & Small Shops',
         price: 9.90,
         period: '/mo',
         items: [
-          { description: 'Max 3000 Products' },
-          { description: 'Max 200 Categories' },
+          { description: 'Max 500 Products' },
+          { description: 'Max 30 Categories' },
           { description: 'Quick Updates (1-2 mins)' },
           { description: 'Remove FAR QR Branding' },
         ],
         callToAction: {
           target: '_blank',
           text: 'Buy Now',
-          href: '#', // Link thanh toán
+          href: '#', 
         },
       },
       {
-        title: '3 Months',
-        subtitle: 'Quarterly Plan',
+        title: 'Growth (3 Months)',
+        subtitle: 'Save ~10%',
         price: 26.90,
         period: '/3 mos',
         items: [
-          { description: 'Save ~10%' },
-          { description: 'Max 3000 Products' },
-          { description: 'Max 200 Categories' },
+          { description: 'Max 1,200 Products' },
+          { description: 'Max 80 Categories' },
           { description: 'Quick Updates (1-2 mins)' },
+          { description: 'Remove FAR QR Branding' },
         ],
         callToAction: {
           target: '_blank',
@@ -62,15 +64,15 @@ const metadata = {
         },
       },
       {
-        title: '6 Months',
-        subtitle: 'Semi-Annual',
+        title: 'Business (6 Months)',
+        subtitle: 'Save ~20%',
         price: 47.90,
         period: '/6 mos',
         items: [
-          { description: 'Save ~20%' },
-          { description: 'Max 3000 Products' },
-          { description: 'Max 200 Categories' },
+          { description: 'Max 2,200 Products' },
+          { description: 'Max 150 Categories' },
           { description: 'Quick Updates (1-2 mins)' },
+          { description: 'Remove FAR QR Branding' },
         ],
         callToAction: {
           target: '_blank',
@@ -79,15 +81,15 @@ const metadata = {
         },
       },
       {
-        title: '1 Year',
-        subtitle: 'Most Economical',
+        title: 'Pro / Unlimited (1 Year)',
+        subtitle: 'Save ~50% (Best Value)',
         price: 59.90,
         period: '/year',
         items: [
-          { description: 'Save ~50% (Best Value)' },
-          { description: 'Max 3000 Products' },
+          { description: 'Max 3,000 Products' },
           { description: 'Max 200 Categories' },
-          { description: 'Quick Updates (1-2 mins)' },
+          { description: 'Priority Quick Updates' },
+          { description: 'Remove FAR QR Branding' },
         ],
         callToAction: {
           target: '_blank',
@@ -95,7 +97,7 @@ const metadata = {
           href: '#',
         },
         hasRibbon: true,
-        ribbonTitle: 'Save 50%',
+        ribbonTitle: 'Save 50% - Best Value',
       },
     ]}
   />
@@ -104,38 +106,28 @@ const metadata = {
 
   <Features3
     title="Why upgrade to Premium?"
-    subtitle="Enhance your customer experience with professional tools"
+    subtitle="Unlock higher limits and professional features"
     columns={2}
     items={[
       {
-        title: 'High Capacity',
-        description: 'Manage up to 3000 products and 200 categories. Perfect for large menus and extensive pricelists.',
+        title: 'Increased Capacity',
+        description: 'Store more products and categories as your business grows. The Pro plan supports up to 3,000 items.',
         icon: 'tabler:database',
       },
       {
         title: 'Accumulative Time',
-        description: 'Buying a new package while another is active? No problem. The new duration is added to your remaining days.',
+        description: 'Buying a new package while another is active? The new duration is added to your remaining days. You never lose value.',
         icon: 'tabler:calendar-plus',
       },
       {
-        title: 'Professional Look',
-        description: 'Remove the "Powered by FAR QR" branding from your menu footer for a cleaner look.',
+        title: 'Brand Freedom',
+        description: 'All premium plans allow you to remove the "Powered by FAR QR" branding from your menu footer.',
         icon: 'tabler:brand-pnpm',
       },
       {
         title: 'Quick Sync',
-        description: 'Edit your menu on the dashboard, and customers see changes on their phones within 1-2 minutes.',
+        description: 'Updates to prices and items appear on customer phones within 1-2 minutes.',
         icon: 'tabler:refresh',
-      },
-      {
-        title: 'Priority Support',
-        description: 'Get faster responses for any technical issues or account inquiries.',
-        icon: 'tabler:headset',
-      },
-      {
-        title: 'Secure Payments',
-        description: 'All transactions are processed securely. We do not store your credit card information.',
-        icon: 'tabler:shield-lock',
       },
     ]}
     classes={{ container: 'max-w-5xl' }}
@@ -144,28 +136,28 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="How to purchase"
-    tagline="Simple Process"
+    title="Simple Purchase Process"
+    tagline="How it works"
     isReversed={true}
     items={[
       {
         title: 'Step 1: Log In',
-        description: 'Access your account dashboard. If you are in a trial, your data is already there.',
+        description: 'Access your dashboard. Your trial data is safe and ready.',
         icon: 'tabler:login',
       },
       {
-        title: 'Step 2: Select a Package',
-        description: 'Choose the duration (1 Month, 3 Months, etc.) that fits your budget.',
+        title: 'Step 2: Choose Plan',
+        description: 'Select the package that fits your inventory size (500, 1200, 2200, or 3000 products).',
         icon: 'tabler:click',
       },
       {
         title: 'Step 3: Payment',
-        description: 'Complete the secure payment process.',
+        description: 'Complete secure payment.',
         icon: 'tabler:credit-card',
       },
       {
-        title: 'Step 4: Extension Activated',
-        description: 'Your account expiry date is automatically extended based on the package you bought.',
+        title: 'Step 4: Instant Upgrade',
+        description: 'Your account limits increase and expiration date extends immediately.',
         icon: 'tabler:circle-check',
       },
     ]}
@@ -179,28 +171,23 @@ const metadata = {
 
   <FAQs
     title="Pricing FAQs"
-    subtitle="Important information about billing and subscriptions."
+    subtitle="Common questions about our plans."
     columns={1}
     items={[
       {
-        title: 'Can I switch plans later? (e.g., from 1 Month to 1 Year)',
+        title: 'Can I switch from Starter to Pro later?',
         description:
-          "<strong>Yes, but with a specific rule:</strong> We do not swap or refund packages. Instead, we use an <strong>Accumulative</strong> system. If you buy a 1-Year package while you still have 10 days left on your Monthly plan, your account will have <strong>1 Year + 10 Days</strong> total. You never lose paid time.",
+          "Yes. Because our system is <strong>Accumulative</strong>, you simply buy the Pro package. Your account limits will increase to the Pro level immediately, and the 1 Year duration will be added to your remaining days.",
       },
       {
-        title: 'Is there a limit on items?',
+        title: 'Why is there a product limit?',
         description:
-          'Yes, the current limit is 3,000 products and 200 category groups. This is sufficient for most restaurants, cafes, and retail shops.',
+          'Limits ensure the system runs fast for everyone. 3,000 products (Pro Plan) is optimized for high performance while covering the needs of large restaurants.',
       },
       {
-        title: 'How fast do price changes update?',
+        title: 'Does "Quick Updates" mean instant?',
         description:
-          'Due to caching for performance optimization, updates to your menu (prices, images, names) typically appear on the customer side after a delay of <strong>1-2 minutes</strong>.',
-      },
-      {
-        title: 'What happens when my plan expires?',
-        description:
-          'Your menu will be paused and customers cannot view it. However, your data is kept safe for a grace period, allowing you to renew without losing your setup.',
+          'It is very fast but not instant. There is a system delay of about <strong>1-2 minutes</strong> for changes to propagate to the public QR view.',
       },
     ]}
   />
@@ -208,13 +195,13 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
-    title="Ready to organize your menu?"
-    subtitle="Start with a small package or save big with the annual plan."
+    title="Ready to scale?"
+    subtitle="Start small or go unlimited today."
     actions={[
       {
         variant: 'primary',
         text: 'Go to Dashboard',
-        href: 'https://app.yourwebsite.com', // Thay link dashboard của bạn
+        href: 'https://app.yourwebsite.com', 
       },
     ]}
   />
