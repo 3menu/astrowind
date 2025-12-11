@@ -8,11 +8,12 @@ import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
+// Đã xóa import Stats theo yêu cầu
+
 const metadata = {
-  title: 'FAR QR — Digital Menu, WiFi & Artistic QR Solutions',
+  title: 'FAR QR — Digital Menu, Free WiFi QR & Custom Designs',
   ignoreTitleTemplate: true,
 };
 ---
@@ -24,98 +25,98 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get 7-Day Free Trial',
+        text: 'Request Menu Trial',
         href: '#trial-form',
-        icon: 'tabler:rocket',
+        icon: 'tabler:user-plus',
       },
-      { text: 'How it works', href: '#features' },
+      { text: 'Create Free WiFi QR', href: '#wifi-section' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'FAR QR Illustration' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'FAR QR Overview' }}
   >
     <Fragment slot="title">
-      Digitize your services with <span class="text-accent dark:text-white">FAR QR</span>
+      Digitize your interactions with <span class="text-accent dark:text-white">FAR QR</span>
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        Easily create <strong>Digital Menus</strong>, <strong>WiFi QRs</strong>, and unique <strong>Artistic QR Codes</strong>.</span
+        Three solutions for your needs: <strong>Managed Digital Menus</strong>, <strong>Free WiFi QRs</strong>, and Premium <strong>Artistic Designs</strong>.</span
       >
-      Manage your pricelists via our simple dashboard and let your customers connect instantly.
+      Simple tools to connect with your customers effectively.
     </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
 
-  <Note title="Philosophy:" description="Simplicity, Convenience, and Aesthetics." />
+  <Note title="Philosophy:" description="Practical, Aesthetic, and Accessible Solutions." />
 
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
     tagline="Our Services"
-    title="Everything you need to go Digital"
-    subtitle="FAR QR provides essential tools for shop owners, professionals, and creatives."
+    title="Choose the right tool for you"
+    subtitle="We offer different workflows depending on what you need: Management, Utility, or Design."
     items={[
       {
         title: 'Digital Menu & Pricelists',
         description:
-          'A simple management dashboard allows you to input products and prices quickly. Generate a QR for customers to scan and view.',
+          'For shop owners. Request an account to access the dashboard. Manage items and prices easily. Customers scan to view.',
         icon: 'tabler:list-details',
       },
       {
-        title: 'Instant WiFi Access',
+        title: 'Free WiFi QR Generator',
         description:
-          'Create a QR code containing your network details. Customers scan to connect instantly without typing passwords.',
+          'For everyone. Simply enter your network details and generate a QR code instantly. No account required.',
         icon: 'tabler:wifi',
       },
       {
         title: 'Artistic & Custom QR',
         description:
-          'Personalize your QR codes with your logo, colors, or artistic styles for your website, profile, or CV.',
+          'For branding. Upload your logo/image, enter URL, and make a payment. We send the high-quality design to your email.',
         icon: 'tabler:palette',
       },
       {
-        title: 'Easy Dashboard',
+        title: 'Management Dashboard',
         description:
-          'No coding skills needed. Our user-friendly interface makes it easy to add, edit, or delete items on your menu.',
+          'Exclusive for Menu/Pricelist users. Update content in real-time without re-printing QR codes.',
         icon: 'tabler:layout-dashboard',
       },
       {
-        title: 'Mobile Friendly',
+        title: 'Email Delivery',
         description:
-          'The menus and profiles created with FAR QR look perfect on all mobile devices.',
-        icon: 'tabler:device-mobile',
+          'For Artistic QR orders, receive your high-resolution files directly to your inbox after processing.',
+        icon: 'tabler:mail',
       },
       {
         title: 'Scan Analytics',
         description:
-          'See how many customers are scanning your QR codes to understand user engagement.',
+          'Track engagement for your Digital Menus to understand customer behavior.',
         icon: 'tabler:chart-bar',
       },
     ]}
   />
 
-  <!-- Content Widget **************** -->
+  <!-- Content Widget - MENU SERVICE **************** -->
 
   <Content
     isReversed
-    tagline="Management Dashboard"
-    title="Create your Digital Menu / Pricelist"
+    tagline="Subscription Service"
+    title="Digital Menu & Pricelist Management"
     items={[
       {
-        title: 'Input Data Quickly',
+        title: 'Dashboard Access',
         description:
-          'Log in to your dashboard and simply type in your item names, descriptions, and prices.',
+          'Sign up for a trial account to access our content management system.',
       },
       {
-        title: 'Instant Updates',
+        title: 'Real-time Updates',
         description:
-          'Need to change a price? Update it in the dashboard and customers will see the new price immediately. No need to reprint the QR.',
+          'Edit prices or hide items instantly. The QR code on your table remains the same.',
       },
       {
-        title: 'Clean Display',
+        title: 'How to get started',
         description:
-          'Your customers get a clear, easy-to-read list of your services or products right on their phones.',
+          'Fill out the "Request Trial" form below. We will set up your account and send you login details.',
       },
     ]}
     image={{
@@ -124,8 +125,8 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Simple & Effective</h3>
-      Save printing costs and keep your pricing up-to-date effortlessly.
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">For Restaurants & Shops</h3>
+      Manage your offerings professionally.
     </Fragment>
 
     <Fragment slot="bg">
@@ -133,24 +134,25 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
+  <!-- Content Widget - WIFI SERVICE **************** -->
 
   <Content
+    id="wifi-section"
     isAfterContent
     items={[
       {
-        title: 'One-Scan Connection',
-        description: `Customers point their camera, tap, and connect. Eliminate the frustration of typing complex passwords.`,
+        title: 'Free & Instant',
+        description: `No payment or account needed. Just type your WiFi name and password.`,
       },
       {
-        title: 'Secure Sharing',
+        title: 'Direct Generation',
         description:
-          'Share internet access without verbally saying the password or displaying it on a wall poster.',
+          'The QR Code is created right here in your browser. Download it immediately.',
       },
       {
-        title: 'Professional Look',
+        title: 'Convenient',
         description:
-          "Place a WiFi QR stand on tables or reception desks for a modern customer experience.",
+          "Print it and stick it on your wall. Guests connect without asking for the password.",
       },
     ]}
     image={{
@@ -159,8 +161,8 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Hassle-free WiFi Access</h3>
-        Improve customer satisfaction with the easiest way to get online.
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Free WiFi QR Generator</h3>
+        Simplify connection for your guests.
     </Fragment>
 
     <Fragment slot="bg">
@@ -168,26 +170,26 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
+  <!-- Content Widget - ARTISTIC SERVICE **************** -->
 
   <Content
     isReversed
     isAfterContent
     items={[
       {
-        title: 'Branded QR Codes',
+        title: 'Custom Order Process',
         description:
-          'Add your company logo to the center of the QR code or use your brand colors.',
+          'Submit your Target URL, upload your Logo/Image, and provide your Email address.',
       },
       {
-        title: 'Artistic Designs',
+        title: 'Pre-payment Required',
         description:
-          'Turn boring black-and-white squares into visually appealing graphics that match your style.',
+          'Complete the payment securely. Our designers/system will process your request.',
       },
       {
-        title: 'Personal Profiles / CV',
+        title: 'Delivered via Email',
         description:
-          'Link your QR to a personalized bio page or CV. Perfect for business cards and networking.',
+          'Receive your stunning, personalized QR code directly in your inbox.',
       },
     ]}
     image={{
@@ -196,8 +198,8 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Artistic & Personalized</h3>
-        Make your QR codes part of your design identity.
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Premium Artistic QR</h3>
+        Stand out with a personalized design for your Brand or Profile.
     </Fragment>
 
     <Fragment slot="bg">
@@ -208,29 +210,25 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="How to start using FAR QR"
+    title="Workflows Overview"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Request Access</span>',
+        title: 'For <span class="font-medium">WiFi QR</span>',
         description:
-          "Fill out the form below with your details to request a 7-day trial account.",
-        icon: 'tabler:forms',
+          "Input WiFi details -> Generate instantly -> Download for Free.",
+        icon: 'tabler:wifi',
       },
       {
-        title: 'Step 2: <span class="font-medium">Receive Account</span>',
+        title: 'For <span class="font-medium">Artistic QR</span>',
         description:
-          "We will send your login credentials to your email. You can then access the FAR QR dashboard.",
-        icon: 'tabler:mail',
+          "Upload Image & Info -> Pay Online -> Receive Result via Email.",
+        icon: 'tabler:palette',
       },
       {
-        title: 'Step 3: <span class="font-medium">Create & Publish</span>',
+        title: 'For <span class="font-medium">Digital Menu</span>',
         description:
-          'Enter your menu items, set up WiFi details, or customize your QR art. Then download and print!',
-        icon: 'tabler:printer',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
+          'Request Trial (Form below) -> Get Account -> Manage in Dashboard.',
+        icon: 'tabler:layout-dashboard',
       },
     ]}
     image={{
@@ -239,17 +237,18 @@ const metadata = {
     }}
   />
 
-  <!-- FORM WIDGET (CUSTOM ADDED) ******************* -->
+  <!-- FORM WIDGET (Only for Digital Menu Trial) ******************* -->
   
   <div id="trial-form" class="scroll-mt-16">
     <div class="flex flex-col max-w-6xl mx-auto px-4 sm:px-6 overflow-hidden">
         <div class="py-12 md:py-20 lg:py-24 rounded-lg bg-blue-50 dark:bg-slate-800 shadow-xl p-8">
             <div class="text-center pb-10 max-w-5xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tighter mb-4 font-heading text-heading">
-                    Request 7-Day Free Trial
+                    Request Digital Menu Trial
                 </h2>
                 <p class="text-xl text-muted dark:text-slate-400">
-                    Fill in your details to receive a trial account for the FAR QR Dashboard.
+                    Want to use our Dashboard for Menu/Pricelist? <br>
+                    Fill in your details to get a 7-day free trial account.
                 </p>
             </div>
 
@@ -285,9 +284,9 @@ const metadata = {
                 <!-- Submit Button -->
                 <div class="col-span-1 md:col-span-2 mt-4">
                     <button type="submit" class="w-full py-4 text-white bg-primary hover:bg-blue-700 font-bold rounded-md shadow-lg transition duration-200">
-                        Get Trial Account
+                        Request Trial Account
                     </button>
-                    <p class="text-center text-xs text-gray-500 mt-4">We will contact you shortly to provide access.</p>
+                    <p class="text-center text-xs text-gray-500 mt-4">Note: WiFi Generator is free and does not require this form.</p>
                 </div>
             </form>
         </div>
@@ -311,36 +310,25 @@ const metadata = {
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'How do I create a menu?',
+        title: 'How do I create a WiFi QR?',
         description:
-          "Once you receive your account, log in to the dashboard. You can manually enter your categories (e.g., Drinks, Food) and items with their prices. The system will generate a link and a QR code for your menu.",
+          "It's free and instant. Go to our WiFi Tool page, enter your SSID and Password, and the QR code is generated immediately for you to download.",
       },
       {
-        title: 'Is the menu update automatic?',
+        title: 'How does the Artistic QR service work?',
         description:
-          'The QR code remains the same. When you edit a price in the dashboard, the change appears instantly on the customer\'s phone when they scan the QR.',
+          'This is a paid service. You fill out an order form with your link, upload your image/logo, and complete payment. We process the design and email the result to you.',
       },
       {
-        title: 'How does the WiFi QR work?',
+        title: 'What is the "Digital Menu"?',
         description:
-          'You enter your WiFi network name (SSID) and password into our tool. We generate a secure QR code. Customers scan it to connect directly without seeing or typing the password.',
+          'It is a management system. You need an account (trial available) to log in, add products/prices. We host the menu online and give you a dynamic QR code for customers to scan.',
       },
       {
-        title: "What is an Artistic QR?",
+        title: "Can I try the Menu Dashboard for free?",
         description:
-          "It's a QR code that incorporates design elements like your logo or specific patterns, making it look better than a standard black-and-white square while still being scannable.",
+          "Yes. Fill out the 'Request Digital Menu Trial' form above, and we will set up a 7-day trial account for you.",
       },
-    ]}
-  />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'QR Generated', amount: '15K+' },
-      { title: 'Scans/Month', amount: '2.4M' },
-      { title: 'Happy Users', amount: '3500+' },
-      { title: 'Countries', amount: '20+' },
     ]}
   />
 
@@ -350,18 +338,18 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Request Trial Now',
+        text: 'Request Menu Trial',
         href: '#trial-form',
         icon: 'tabler:user-plus',
       },
     ]}
   >
     <Fragment slot="title">
-      Ready to simplify your business?
+      Ready to modernize your business?
     </Fragment>
 
     <Fragment slot="subtitle">
-      Join thousands of businesses using <span class="font-bold">FAR QR</span> to modernize their operations.
+      Whether you need a free WiFi code, a custom design, or a full digital menu system, <span class="font-bold">FAR QR</span> has you covered.
     </Fragment>
   </CallToAction>
 </Layout>
