@@ -10,12 +10,12 @@ export const headerData = {
       text: 'Services',
       links: [
         {
-          text: 'Smart Menu & Pricelists',
-          href: '/services/smart-menu', // Trang giới thiệu dịch vụ tạo Menu
+          text: 'Digital Menu & Pricelists',
+          href: '/services/digital-menu', // Trang giới thiệu dịch vụ tạo Menu
         },
         {
-          text: 'Artistic & Custom QR',
-          href: '/services/artistic-qr', // Trang giới thiệu dịch vụ QR nghệ thuật
+          text: 'Image QR',
+          href: '/services/image-qr', // Trang giới thiệu dịch vụ QR nghệ thuật
         },
       ],
     },
@@ -44,13 +44,12 @@ export const footerData = {
     {
       title: 'Services',
       links: [
-        { text: 'Smart Menu', href: '/services/smart-menu' },
-        { text: 'Artistic QR', href: '/services/artistic-qr' },
-        { text: 'Custom Design', href: '/contact' },
+        { text: 'Digital Menu', href: '/services/digital-menu' },
+        { text: 'Image QR', href: '/services/image-qr' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Infomation',
       links: [
         { text: 'About Us', href: '/about' },
         { text: 'Blog', href: '/blog' },
@@ -63,11 +62,11 @@ export const footerData = {
     { text: 'Privacy Policy', href: '/privacy' },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/FAR_QR' },
-    { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@farqr.com' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/FARQR' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@farqr.com' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/FAR_QR' },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@FARQR' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
     © 2025 FAR QR. All rights reserved.
