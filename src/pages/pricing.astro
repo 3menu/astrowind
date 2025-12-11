@@ -16,7 +16,7 @@ const metadata = {
   <!-- HeroText Widget ******************* -->
 
   <HeroText
-    tagline="Pricing Plans"
+    tagline="Pricing"
     title="Choose your Growth Path"
     subtitle="Flexible plans for every stage of your business. Upgrade anytime."
   />
@@ -24,79 +24,112 @@ const metadata = {
   <!-- Pricing Widget ******************* -->
 
   <Prices
-    title="Premium Packages"
-    subtitle="All plans include secure hosting and 24/7 support"
-    columns={2}
+    title="Our prices"
+    subtitle="Only pay for what you need"
     prices={[
       {
-        title: 'Starter (1 Month)',
-        subtitle: 'For Startups & Small Shops',
-        price: 9.90,
-        period: '/mo',
+        title: '1 month',
+        subtitle: 'Budget Saver',
+        price: 9.9,
+        period: 'per month',
         items: [
-          { description: 'Max 500 Products' },
-          { description: 'Max 30 Categories' },
-          { description: 'Bonus: 1 Free WiFi QR' },
-          { description: 'Bonus: 1 Artistic Logo QR' },
+          {
+            description: 'Max 500 Products',
+          },
+          {
+            description: 'Max 30 Categories',
+          },
+          {
+            description: 'Bonus: 1 Free WiFi QR',
+          },
+          {
+            description: 'Bonus: 1 Image QR',
+          },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Buy Now',
-          href: '#', 
+          text: 'Get started',
+          href: '#',
         },
       },
       {
-        title: 'Growth (3 Months)',
+        title: '3 months',
         subtitle: 'Save ~10%',
-        price: 26.90,
-        period: '/3 mos',
+        price: 26.9,
+        period: 'Per 3 Months',
         items: [
-          { description: 'Max 1,200 Products' },
-          { description: 'Max 80 Categories' },
-          { description: 'Bonus: 1 Free WiFi QR' },
-          { description: 'Bonus: 1 Artistic Logo QR' },
+          {
+            description: 'Max 1,200 Products',
+          },
+          {
+            description: 'Max 80 Categories',
+          },
+          {
+            description: 'Bonus: 1 Free WiFi QR',
+          },
+          {
+            description: 'Bonus: 1 Image QR',
+          },
         ],
         callToAction: {
           target: '_blank',
-          text: 'Buy Now',
-          href: '#',
-        },
-      },
-      {
-        title: 'Business (6 Months)',
-        subtitle: 'Save ~20%',
-        price: 47.90,
-        period: '/6 mos',
-        items: [
-          { description: 'Max 2,200 Products' },
-          { description: 'Max 150 Categories' },
-          { description: 'Bonus: 1 Free WiFi QR' },
-          { description: 'Bonus: 1 Artistic Logo QR' },
-        ],
-        callToAction: {
-          target: '_blank',
-          text: 'Buy Now',
-          href: '#',
-        },
-      },
-      {
-        title: 'Pro / Unlimited (1 Year)',
-        subtitle: 'Save 50% - Best Value',
-        price: 59.90,
-        period: '/year',
-        items: [
-          { description: 'Max 3,000 Products' },
-          { description: 'Max 200 Categories' },
-          { description: 'Bonus: 1 Free WiFi QR' },
-          { description: 'Bonus: 1 Artistic Logo QR' },
-        ],
-        callToAction: {
-          target: '_blank',
-          text: 'Buy Now',
+          text: 'Get started',
           href: '#',
         },
         hasRibbon: true,
-        ribbonTitle: 'Save 50%',
+        ribbonTitle: 'popular',
+      },
+      {
+        title: '6 months',
+        subtitle: 'Save ~20%',
+        price: 47.9,
+        period: 'Per 6 Months',
+        items: [
+          {
+            description: 'Max 2,200 Products',
+          },
+          {
+            description: 'Max 150 Categories',
+          },
+          {
+            description: 'Bonus: 1 Free WiFi QR',
+          },
+          {
+            description: 'Bonus: 1 Image QR',
+          },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Get started',
+          href: '#',
+        },
+      },
+      {
+        title: '1 year',
+        subtitle: 'Save 50% - Best Value',
+        price: 59.9,
+        period: 'Per 1 year',
+        items: [
+          {
+            description: 'Max 3,000 Products',
+          },
+          {
+            description: 'Max 200 Categories',
+          },
+          {
+            description: 'Bonus: 1 Free WiFi QR',
+          },
+          {
+            description: 'Bonus: 1 Image QR',
+          },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Get started',
+          href: '#',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'popular',
       },
     ]}
   />
@@ -104,35 +137,45 @@ const metadata = {
   <!-- Features3 Widget ************** -->
 
   <Features3
-    title="Why upgrade to Premium?"
-    subtitle="Unlock higher limits and professional features"
+    title="Price-related features"
+    subtitle="Discover the advantages of choosing our plans"
     columns={2}
     items={[
       {
-        title: 'Increased Capacity',
-        description: 'Store more products and categories as your business grows. The Pro plan supports up to 3,000 items.',
-        icon: 'tabler:database',
+        title: 'Tiered Pricing Plans',
+        description: 'Choose from a range of pricing plans designed to accommodate different budgets and requirements.',
+        icon: 'tabler:stairs',
+      },
+      {
+        title: 'Transparent Pricing',
+        description: 'Clearly displayed pricing details for each plan, with no hidden costs or unexpected charges.',
+        icon: 'tabler:flip-vertical',
+      },
+      {
+        title: 'Secure Payment Methods',
+        description: 'Checkout with confidence using PayPal. Your financial data is encrypted and never touches our servers.',
+        icon: 'tabler:brand-paypal',
+      },
+      {
+        title: 'Bonus: Art & WiFi QRs',
+        description: `Receive 1 Free Image QR (from your logo) PLUS a convenient WiFi QR for your shop. Included with all subscription plans.`,
+        icon: 'tabler:gift',
+      },
+      {
+        title: 'Expand Limits Anytime',
+        description: 'Need more space? Switch to a higher plan instantly to increase your capacity for Products and Categories.',
+        icon: 'tabler:box-multiple',
       },
       {
         title: 'Accumulative Time',
         description: 'Buying a new package while another is active? The new duration is added to your remaining days. You never lose value.',
         icon: 'tabler:calendar-plus',
       },
-      {
-        title: 'Artistic Branding',
-        description: 'Every premium package comes with a free Artistic Logo QR generation request.',
-        icon: 'tabler:palette',
-      },
-      {
-        title: 'WiFi Convenience',
-        description: 'We generate a high-quality WiFi QR for your shop to help customers connect easily.',
-        icon: 'tabler:wifi',
-      },
     ]}
     classes={{ container: 'max-w-5xl' }}
   />
 
-  <!-- Steps Widget ****************** -->
+   <!-- Steps Widget ****************** -->
 
   <Steps
     title="Simple Purchase Process"
@@ -166,8 +209,7 @@ const metadata = {
     }}
   />
 
-  <!-- FAQs Widget ******************* -->
-
+ <!-- FAQs Widget ******************* -->
   <FAQs
     title="Pricing FAQs"
     subtitle="Common questions about our plans."
