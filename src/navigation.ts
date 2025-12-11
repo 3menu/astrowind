@@ -11,16 +11,16 @@ export const headerData = {
       links: [
         {
           text: 'Digital Menu & Pricelists',
-          href: '/services/digital-menu', 
+          href: '/services/digital-menu',
         },
         {
           text: 'Image QR',
-          href: '/services/image-qr', 
+          href: '/services/image-qr',
         },
       ],
     },
     {
-      text: 'Showcase', 
+      text: 'Showcase',
       href: '/showcase',
     },
     {
@@ -42,14 +42,22 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Services',
+      title: 'FAR QR', // Cột 1
+      links: [
+        { text: 'Home', href: '/' },
+        { text: 'Showcase', href: '/showcase' },
+        { text: 'Pricing', href: '/pricing' },
+      ],
+    },
+    {
+      title: 'Services', // Cột 2
       links: [
         { text: 'Digital Menu', href: '/services/digital-menu' },
         { text: 'Image QR', href: '/services/image-qr' },
       ],
     },
     {
-      title: 'Infomation',
+      title: 'Company', // Cột 3 (Đổi từ Infomation)
       links: [
         { text: 'About Us', href: '/about' },
         { text: 'Blog', href: '/blog' },
