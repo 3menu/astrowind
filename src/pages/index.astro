@@ -10,8 +10,6 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
-// Đã xóa import Stats theo yêu cầu
-
 const metadata = {
   title: 'FAR QR — Digital Menu, Free WiFi QR & Custom Designs',
   ignoreTitleTemplate: true,
@@ -55,7 +53,7 @@ const metadata = {
     id="features"
     tagline="Our Services"
     title="Choose the right tool for you"
-    subtitle="We offer different workflows depending on what you need: Management, Utility, or Design."
+    subtitle="We offer different workflows depending on what you need."
     items={[
       {
         title: 'Digital Menu & Pricelists',
@@ -75,24 +73,6 @@ const metadata = {
           'For branding. Upload your logo/image, enter URL, and make a payment. We send the high-quality design to your email.',
         icon: 'tabler:palette',
       },
-      {
-        title: 'Management Dashboard',
-        description:
-          'Exclusive for Menu/Pricelist users. Update content in real-time without re-printing QR codes.',
-        icon: 'tabler:layout-dashboard',
-      },
-      {
-        title: 'Email Delivery',
-        description:
-          'For Artistic QR orders, receive your high-resolution files directly to your inbox after processing.',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'Scan Analytics',
-        description:
-          'Track engagement for your Digital Menus to understand customer behavior.',
-        icon: 'tabler:chart-bar',
-      },
     ]}
   />
 
@@ -109,9 +89,9 @@ const metadata = {
           'Sign up for a trial account to access our content management system.',
       },
       {
-        title: 'Real-time Updates',
+        title: 'Quick & Easy Updates',
         description:
-          'Edit prices or hide items instantly. The QR code on your table remains the same.',
+          'Edit prices or hide items easily. Changes typically reflect on the customer view within 1-2 minutes.',
       },
       {
         title: 'How to get started',
@@ -325,9 +305,9 @@ const metadata = {
           'It is a management system. You need an account (trial available) to log in, add products/prices. We host the menu online and give you a dynamic QR code for customers to scan.',
       },
       {
-        title: "Can I try the Menu Dashboard for free?",
+        title: "How fast do menu changes update?",
         description:
-          "Yes. Fill out the 'Request Digital Menu Trial' form above, and we will set up a 7-day trial account for you.",
+          "Changes made in the dashboard usually take about 1-2 minutes to appear on the live menu page due to system processing. This ensures high performance for your visitors.",
       },
     ]}
   />
