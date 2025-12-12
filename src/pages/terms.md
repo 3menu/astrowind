@@ -19,15 +19,15 @@ For the purposes of these Terms and Conditions:
 
 - **Affiliate** means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
 
-- **Country** refers to: Vietnam
+- **Country** refers to: Vietnam.
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to **FAR QR** (operated as an individual business).
+- **FAR QR** (referred to as either "FAR QR", "We", "Us" or "Our" in this Agreement) refers to the individual business operating the website. **Note: FAR QR is operated as an individual freelancer business, not a registered corporation.**
 
 - **Device** means any device that can access the Service such as a computer, a cellphone or a digital tablet.
 
-- **Service** refers to the Website and the services provided therein (Digital Menu, WiFi QR, Branded QR).
+- **Service** refers to the Website and the services provided therein, including but not limited to Digital Menus, Pricelists, WiFi QR Generator, and custom Branded QR design services.
 
-- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.
+- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and FAR QR regarding the use of the Service.
 
 - **Third-party Social Media Service** means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.
 
@@ -37,63 +37,84 @@ For the purposes of these Terms and Conditions:
 
 ## Acknowledgment
 
-These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.
+These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and FAR QR. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.
 
 Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.
 
 By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.
 
-You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.
+You represent that you are over the age of 18. FAR QR does not permit those under 18 to use the Service.
 
-Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Please read Our Privacy Policy carefully before using Our Service.
+## User Content and Responsibility
 
-## Subscriptions, Free Trials, and Refunds
+### Content Ownership
+You retain all rights and ownership of the content, images, logos, prices, and text ("User Content") that You upload, post, or display on or through the Service.
+
+### User Responsibility
+By uploading User Content, You represent and warrant that:
+1.  You have the lawful right to use, display, and distribute such content.
+2.  The content is accurate and does not mislead consumers (e.g., accurate pricing on menus).
+3.  **FAR QR is not responsible** for any content posted by You. You bear full legal responsibility for any claims, damages, or lawsuits arising from the content You publish via our QR codes or Digital Menus.
+
+## Prohibited Uses
+
+You agree not to use the Service for any unlawful purpose or any purpose prohibited under this clause. You agree not to use the Service to generate QR codes or host content that:
+
+1.  **Illegal Activity:** Promotes illegal acts, violates any applicable local, state, national, or international law.
+2.  **Malicious Content:** Contains viruses, malware, phishing links, or any code of a destructive nature.
+3.  **Adult/Offensive Content:** Contains pornography, sexually explicit material, hate speech, or violent content.
+4.  **Gambling:** Promotes online gambling, betting, or lottery services.
+5.  **Scams:** Is used for fraudulent activities, scams, or misleading marketing.
+
+**Violation of these prohibitions will result in the immediate termination of Your account and deletion of Your QR codes without prior notice and without refund.**
+
+## Subscriptions, Payments, and Refunds
 
 ### Free Trial
 We provide a **7-day free trial** for our Premium features. During this period, you have full access to test the functionality of our Service (creating menus, managing QR codes, etc.) to ensure it meets your needs.
 
 ### No Refund Policy
-Because we offer a comprehensive free trial period for you to evaluate the Service, **all payments made via PayPal are final and non-refundable**. By upgrading to a paid plan, You acknowledge that You have successfully tested the Service during the trial period and are satisfied with its functionality.
+Because we offer a comprehensive free trial period for you to evaluate the Service, **all payments made via PayPal are final and non-refundable**. By upgrading to a paid plan or purchasing a Branded QR, You acknowledge that You have successfully tested the Service and are satisfied with its functionality.
 
 ### Payment and Taxes
-- **Individual Business Status:** FAR QR operates as an individual freelancer business in Vietnam, not a registered corporation.
+- **Individual Business Status:** FAR QR operates as an individual freelancer business in Vietnam.
 - **No VAT Invoices:** We **cannot** issue Value Added Tax (VAT) invoices or official corporate tax receipts. The transaction receipt provided by PayPal serves as your only proof of payment.
 - **Payment Method:** All transactions are processed securely through PayPal. We do not store your credit card or banking information on our servers.
 
-## Availability, Errors and Inaccuracies
+### Branded QR Services
+For "Branded QR" services (Pay-per-product): You are responsible for providing the correct URL and high-quality Logo files. Once the payment is made and the QR code is delivered via email, the service is considered fulfilled.
 
-We are constantly updating our offerings of products and services on the Service. The products or services available on our Service may be mispriced, described inaccurately, or unavailable, and we may experience delays in updating information on the Service and in our advertising on other web sites.
+## Availability and Limitation of Liability
 
-We cannot and do not guarantee the accuracy or completeness of any information, including prices, product images, specifications, availability, and services. We reserve the right to change or update information and to correct errors, inaccuracies, or omissions at any time without prior notice.
+### Third-Party Infrastructure (Cloudflare)
+Our Service relies on third-party infrastructure, specifically **Cloudflare**, to ensure security, speed, and availability globally. By using the Service, You acknowledge and agree that:
 
-## Limitation of Liability and Third-Party Infrastructure
-
-### Third-Party Services (Cloudflare)
-Our Service relies on third-party infrastructure and services, specifically **Cloudflare**, to ensure security, speed, and availability. You acknowledge that:
-1.  We are not responsible for any downtime, service interruption, or latency caused by Cloudflare or other third-party network providers.
-2.  Such interruptions are beyond Our reasonable control and are considered "Force Majeure" events.
-3.  We shall not be liable for any loss of business, data, or profits arising from such third-party service failures.
+1.  **No Guarantee of Uptime:** While we strive for high availability, we cannot guarantee 100% uptime.
+2.  **Force Majeure:** Disruptions caused by Cloudflare outages, global internet routing issues, or third-party server failures are considered "Force Majeure" events beyond Our control.
+3.  **Exclusion of Liability for Business Loss:** FAR QR shall **not be liable** for any loss of business, loss of revenue, loss of customers, or damage to reputation caused by the temporary unavailability of the Service (e.g., if your customers cannot scan a menu due to a server outage).
 
 ### General Limitation
-Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.
+To the maximum extent permitted by applicable law, in no event shall FAR QR be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service), even if FAR QR has been advised of the possibility of such damages.
 
-To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service), even if the Company or any supplier has been advised of the possibility of such damages.
+**Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service during the 12 months immediately preceding the event giving rise to such claim.**
 
 ## Links to Other Websites
 
-Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.
+Our Service may contain links to third-party web sites or services that are not owned or controlled by FAR QR.
 
-The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.
+FAR QR has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that FAR QR shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.
 
 ## Termination
 
-We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions. Upon termination, Your right to use the Service will cease immediately.
+We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.
+
+Upon termination, Your right to use the Service will cease immediately, and any active QR codes may be deactivated.
 
 ## "AS IS" and "AS AVAILABLE" Disclaimer
 
-The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service.
+The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, FAR QR expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service.
 
-Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, operate without interruption, meet any performance or reliability standards or be error free.
+Without limitation to the foregoing, FAR QR provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, operate without interruption, meet any performance or reliability standards or be error free.
 
 ## Governing Law
 
@@ -101,11 +122,7 @@ The laws of **Vietnam**, excluding its conflicts of law rules, shall govern this
 
 ## Disputes Resolution
 
-If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company via email.
-
-## For European Union (EU) Users
-
-If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which you are resident in.
+If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting FAR QR via our supported contact channels.
 
 ## United States Legal Compliance
 
@@ -125,8 +142,12 @@ Except as provided herein, the failure to exercise a right or to require perform
 
 We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.
 
-## Contact Us
+## Contact Us and Support
 
-If you have any questions about these Terms and Conditions, You can contact us:
+If you have any questions about these Terms and Conditions or need support, You can contact us via:
 
-- By email: **farqr.com@gmail.com**
+- **Contact Form:** Available on our Website.
+- **Social Media:** Facebook Messenger (Chat).
+- **Email:** farqr.com@gmail.com
+
+**Service Level Agreement (SLA):** We are a lean operation. We commit to responding to support inquiries within **24 to 48 business hours**.
