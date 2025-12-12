@@ -1,7 +1,7 @@
 ---
 title: "Lợi ích của Menu Kỹ thuật số cho quán Cafe"
 description: "Tại sao quán Cafe của bạn nên chuyển từ menu giấy sang menu QR code ngay hôm nay? Tiết kiệm chi phí và cập nhật giá nhanh chóng."
-publishDate: "2025-12-12T14:50:21.490Z"
+publishDate: 2025-12-12T14:55:37.939Z
 image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&w=1000&q=80"
 category: "Blog"
 tags:
