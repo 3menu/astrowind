@@ -1,7 +1,7 @@
 ---
 title: "Mã QR nghệ thuật là gì?"
 description: "Mã QR nghệ thuật là dạng mã QR vừa giữ tính năng quét vừa trở thành tác phẩm nghệ thuật, làm tăng sự thu hút thị giác và cá tính hóa"
-publishDate: 2025-12-12T15:31:54.018Z
+publishDate: 2025-12-12T15:36:22.503Z
 image: "https://upload.wikimedia.org/wikipedia/vi/4/46/Qr_code_details-vi.png"
 category: "Blog"
 tags:
@@ -15,7 +15,6 @@ Tích hợp hình ảnh: Mã QR được "hòa quyện" vào một bức tranh, 
 Sử dụng AI: Các công cụ AI giúp tạo ra thiết kế phức tạp bằng cách biến đổi mã QR gốc, cho phép tùy chỉnh theo phong cách nghệ thuật (ví dụ: phong cách Van Gogh) hay yêu cầu cụ thể.
 Màu sắc và hình dạng: Thay vì chỉ đen trắng, chúng có thể có màu sắc sống động, hình dạng ô vuông, hoặc thậm chí biến đổi thành các hình dạng khác nhau.
 Chức năng: Vẫn có thể dùng để kết nối tới URL, video, tài liệu... như mã QR thông thường, nhưng mang lại trải nghiệm thị giác độc đáo hơn.
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/KDygG1sxEUg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Ứng dụng:
 Quảng cáo & Thương hiệu: Tạo sự nổi bật cho sản phẩm, bao bì, áp phích, biển quảng cáo.
