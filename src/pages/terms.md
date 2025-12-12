@@ -144,6 +144,6 @@ We reserve the right, at Our sole discretion, to modify or replace these Terms a
 
 ## Contact Us and Support
 
-If you have any questions about these Terms and Conditions or need support, You can <a href='/#FAQs' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us via: **Email:** farqr.com@gmail.com
+If you have any questions about these Terms and Conditions or need support, You can <a href='/contact/' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us via: **Email:** farqr.com@gmail.com
 
 **Service Level Agreement (SLA):** We operate as a lean team. While we **strive** to respond to support inquiries within 24 to 48 business hours, please acknowledge that response times may be extended due to high inquiry volumes, technical difficulties, or **force majeure events** beyond our reasonable control.
