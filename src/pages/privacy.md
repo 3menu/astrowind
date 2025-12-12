@@ -133,4 +133,4 @@ We reserve the right to update or change our Privacy Policy at any time. We will
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy, You can <a href='/#FAQs' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us by email: **farqr.com@gmail.com**
+If you have any questions about this Privacy Policy, You can <a href='/contact/' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us by email: **farqr.com@gmail.com**
