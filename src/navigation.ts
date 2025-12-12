@@ -14,8 +14,8 @@ export const headerData = {
           href: '/services/digital-menu',
         },
         {
-          text: 'Image QR',
-          href: '/services/image-qr',
+          text: 'Branded QR',
+          href: '/services/branded-qr',
         },
       ],
     },
@@ -53,11 +53,11 @@ export const footerData = {
       title: 'Services', // Cột 2
       links: [
         { text: 'Digital Menu', href: '/services/digital-menu' },
-        { text: 'Image QR', href: '/services/image-qr' },
+        { text: 'Branded QR', href: '/services/branded-qr' },
       ],
     },
     {
-      title: 'Company', // Cột 3 (Đổi từ Infomation)
+      title: 'Explore', // Cột 3 (Đổi từ Infomation)
       links: [
         { text: 'About Us', href: '/about' },
         { text: 'Blog', href: '/blog' },
