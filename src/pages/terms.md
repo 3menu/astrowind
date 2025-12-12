@@ -150,4 +150,4 @@ If you have any questions about these Terms and Conditions or need support, You 
 - **Social Media:** Facebook Messenger (Chat).
 - **Email:** farqr.com@gmail.com
 
-**Service Level Agreement (SLA):** We are a lean operation. We commit to responding to support inquiries within **24 to 48 business hours**.
+**Service Level Agreement (SLA):** We operate as a lean team. While we **strive** to respond to support inquiries within 24 to 48 business hours, please acknowledge that response times may be extended due to high inquiry volumes, technical difficulties, or **force majeure events** beyond our reasonable control.
