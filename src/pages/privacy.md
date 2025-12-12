@@ -136,7 +136,4 @@ We will let You know via email and/or a prominent notice on Our Service, prior t
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy, You can contact us:
-
-- By email: **farqr.com@gmail.com**
-- By visiting the contact form on our website: [https://farqr.com](https://farqr.com)
+If you have any questions about this Privacy Policy, You can <a href='/#FAQs' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us by email: **farqr.com@gmail.com**
