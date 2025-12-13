@@ -46,7 +46,7 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
-// DANH SÁCH NGÔN NGỮ (17 mục như bạn yêu cầu)
+// DANH SÁCH NGÔN NGỮ
 const languages = [
   { code: 'en', name: 'English' },             
   { code: 'vi', name: 'Tiếng Việt' },         
@@ -99,10 +99,9 @@ const languages = [
           <Logo />
         </a>
 
-        <!-- === DROPDOWN NGÔN NGỮ === -->
+        <!-- === DROPDOWN NGÔN NGỮ (ĐÃ TỐI ƯU TỐC ĐỘ) === -->
         <div class="ml-2 md:ml-4 block"> 
           <ul class="flex flex-row"> 
-            <!-- Thêm class 'group' để điều khiển hover -->
             <li class="dropdown relative group">
               <button type="button" class="hover:text-link dark:hover:text-white px-1.5 md:px-2 py-3 flex items-center whitespace-nowrap">
                 <Icon name="tabler:language" class="w-5 h-5 mr-1" /> 
@@ -110,13 +109,23 @@ const languages = [
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
-              <!-- Menu Dropdown -->
-              <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto scrollbar-hide">
+              <!-- 
+                TỐI ƯU HÓA MENU:
+                1. Bỏ 'backdrop-blur-md': Giảm tải GPU.
+                2. bg-white: Nền đặc hiển thị ngay lập tức.
+                3. shadow-lg: Bóng nhẹ, dễ render hơn shadow-xl.
+                4. -webkit-overflow-scrolling: touch (trong style): Cuộn mượt trên iOS.
+                5. will-change-transform: Báo trước cho trình duyệt để ưu tiên render.
+              -->
+              <ul 
+                class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] shadow-lg hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto"
+                style="-webkit-overflow-scrolling: touch; will-change: transform;"
+              >
                 {
                   languages.map((lang) => (
                     <li>
                       <button 
-                        class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 block whitespace-no-wrap cursor-pointer transition-colors"
+                        class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         onclick={`doGTranslate('${lang.code}')`}
                         type="button"
                       >
@@ -136,7 +145,6 @@ const languages = [
       </div>
     </div>
     
-    <!-- MENU CHÍNH -->
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
@@ -253,7 +261,6 @@ const languages = [
   .goog-tooltip, .goog-tooltip:hover { display: none !important; }
   .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   
-  /* CSS Backup cho Hover (chủ yếu cho Desktop) */
   li.dropdown:hover > .dropdown-menu {
       display: block;
   }
@@ -273,7 +280,6 @@ const languages = [
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
-    // 1. Reset về Tiếng Anh
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
@@ -281,7 +287,6 @@ const languages = [
         return;
     }
 
-    // 2. Dịch
     if (select) {
       const newCookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = newCookie;
@@ -290,25 +295,13 @@ const languages = [
       select.dispatchEvent(new Event('change'));
     }
 
-    // === 3. XỬ LÝ LỖI KHÔNG TẮT MENU TRÊN MOBILE (QUAN TRỌNG) ===
+    if (document.activeElement) document.activeElement.blur();
     
-    // Bước A: Bỏ focus khỏi nút vừa bấm (để tắt trạng thái :focus)
-    if (document.activeElement) {
-        document.activeElement.blur();
-    }
-
-    // Bước B: Tìm thẻ LI cha (thẻ đang giữ trạng thái :hover của mobile)
+    // Logic sửa lỗi Sticky Hover trên mobile
     const dropdownParents = document.querySelectorAll('.dropdown');
-    
     dropdownParents.forEach(parent => {
-      // MẸO: Tạm thời tắt pointer-events (tắt cảm ứng) của thẻ cha.
-      // Điều này khiến trình duyệt hiểu là ngón tay đã "rời khỏi" phần tử đó -> Hủy trạng thái hover.
       parent.style.pointerEvents = 'none';
-      
-      // Sau 200ms (đủ để hiệu ứng tắt diễn ra), bật lại cảm ứng để dùng cho lần sau.
-      setTimeout(() => {
-        parent.style.pointerEvents = '';
-      }, 200);
+      setTimeout(() => { parent.style.pointerEvents = ''; }, 200);
     });
   }
 </script>
