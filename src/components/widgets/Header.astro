@@ -46,16 +46,16 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
-// DANH SÁCH 15 NGÔN NGỮ ƯU TIÊN
+// DANH SÁCH 15 NGÔN NGỮ
 const languages = [
   { code: 'en', name: 'English' },
-  { code: 'vi', name: 'Tiếng Việt' },
   { code: 'zh-CN', name: '简体中文' }, 
   { code: 'zh-TW', name: '繁體中文' }, 
   { code: 'es', name: 'Español' },
   { code: 'pt', name: 'Português' },
   { code: 'ja', name: '日本語' },
   { code: 'ko', name: '한국어' },
+  { code: 'vi', name: 'Tiếng Việt' },
   { code: 'th', name: 'ไทย' },
   { code: 'id', name: 'Bahasa Indonesia' },
   { code: 'fr', name: 'Français' },
@@ -92,7 +92,6 @@ const languages = [
     <!-- KHU VỰC BÊN TRÁI: LOGO + TRANSLATE -->
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between items-center']}>
       
-      <!-- Group Logo và Translate -->
       <div class="flex items-center">
         <a class="flex items-center" href={getHomePermalink()}>
           <Logo />
@@ -102,19 +101,12 @@ const languages = [
         <div class="ml-2 md:ml-4 block"> 
           <ul class="flex flex-row"> 
             <li class="dropdown relative group">
-              <!-- Nút chọn ngôn ngữ -->
               <button type="button" class="hover:text-link dark:hover:text-white px-1.5 md:px-2 py-3 flex items-center whitespace-nowrap">
                 <Icon name="tabler:language" class="w-5 h-5 mr-1" /> 
-                <!-- Đã BỎ class hidden, luôn hiển thị chữ Language -->
                 <span>Language</span> 
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
-              <!-- 
-                DROPDOWN MENU:
-                - max-h-[60vh] overflow-y-auto: Tạo thanh cuộn nếu danh sách quá dài
-                - min-w-[180px]: Chiều rộng tối thiểu
-              -->
               <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto scrollbar-hide">
                 {
                   languages.map((lang) => (
@@ -124,7 +116,6 @@ const languages = [
                         onclick={`doGTranslate('${lang.code}')`}
                         type="button"
                       >
-                        {/* Hiển thị cờ (tùy chọn) nếu muốn, ở đây hiển thị Tên ngôn ngữ */}
                         {lang.name}
                       </button>
                     </li>
@@ -141,7 +132,6 @@ const languages = [
       </div>
     </div>
     
-    <!-- MENU CHÍNH -->
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
@@ -233,7 +223,7 @@ const languages = [
 </header>
 
 <style is:global>
-  /* === ẨN GOOGLE FRAME === */
+  /* ẨN GOOGLE FRAME */
   .goog-te-banner-frame,
   .skiptranslate iframe,
   iframe.goog-te-banner-frame,
@@ -259,7 +249,6 @@ const languages = [
   .goog-tooltip:hover { display: none !important; }
   .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   
-  /* Hỗ trợ hiển thị menu khi hover */
   li.dropdown:hover > .dropdown-menu {
       display: block;
   }
@@ -269,38 +258,48 @@ const languages = [
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'vi',
-      // Thêm đủ 15 ngôn ngữ vào đây để Google tải resource
       includedLanguages: 'en,zh-CN,zh-TW,es,pt,ja,ko,vi,th,id,fr,de,ru,ar,hi',
       autoDisplay: false
     }, 'google_translate_element');
   }
 
+  // HÀM XỬ LÝ DỊCH CHÍNH
   function doGTranslate(langPair) {
     const wrapper = document.getElementById('google_translate_element');
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
+
+    // 1. Nếu chọn Tiếng Việt (Gốc) -> Xóa Cookie và Reload để sạch sẽ
+    if (langPair === 'vi') {
+        // Xóa cookie googtrans
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+        // Reload lại trang để hiển thị nội dung gốc
+        location.reload();
+        return;
+    }
+
+    // 2. Nếu chọn ngôn ngữ khác -> Cập nhật Cookie thủ công và Trigger
     if (select) {
+      // Ghi đè cookie ngay lập tức: /auto/ngon_ngu_dich
+      const newCookie = `googtrans=/auto/${langPair}; path=/;`;
+      document.cookie = newCookie;
+      
+      // Đồng thời cập nhật thêm cookie với domain để đảm bảo (fix lỗi kẹt cookie)
+      document.cookie = `googtrans=/auto/${langPair}; path=/; domain=${location.hostname}`;
+
+      // Set value cho select và bắn sự kiện
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
     }
 
-    // === TỰ ĐỘNG ĐÓNG DROPDOWN ===
-    // Tìm tất cả các menu đang mở
+    // 3. Hiệu ứng tắt Dropdown sau khi chọn
     const menus = document.querySelectorAll('.dropdown-menu');
     menus.forEach(menu => {
-      // Ẩn tạm thời bằng CSS inline
       menu.style.display = 'none';
-      
-      // Sau 50ms (rất nhanh), xóa style inline để hover hoạt động lại bình thường cho lần sau
-      setTimeout(() => {
-        menu.style.display = ''; 
-      }, 50);
+      setTimeout(() => { menu.style.display = ''; }, 50);
     });
-
-    // Mất focus khỏi nút vừa bấm để tránh trạng thái :focus giữ menu mở
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
+    if (document.activeElement) document.activeElement.blur();
   }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
