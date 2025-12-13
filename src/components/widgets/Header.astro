@@ -49,13 +49,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 // DANH SÁCH 15 NGÔN NGỮ
 const languages = [
   { code: 'en', name: 'English' },
+  { code: 'vi', name: 'Tiếng Việt' },
   { code: 'zh-CN', name: '简体中文' }, 
   { code: 'zh-TW', name: '繁體中文' }, 
   { code: 'es', name: 'Español' },
   { code: 'pt', name: 'Português' },
   { code: 'ja', name: '日本語' },
   { code: 'ko', name: '한국어' },
-  { code: 'vi', name: 'Tiếng Việt' },
   { code: 'th', name: 'ไทย' },
   { code: 'id', name: 'Bahasa Indonesia' },
   { code: 'fr', name: 'Français' },
@@ -257,7 +257,7 @@ const languages = [
 <script is:inline>
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'vi',
+      pageLanguage: 'en',
       includedLanguages: 'en,zh-CN,zh-TW,es,pt,ja,ko,vi,th,id,fr,de,ru,ar,hi',
       autoDisplay: false
     }, 'google_translate_element');
