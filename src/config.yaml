@@ -4,7 +4,7 @@ site:
   base: '/'
   trailingSlash: false
 
-  # You need to get the code from Google Search Console and fill it in here later
+  # Điền mã xác thực Google Search Console của bạn vào đây
   googleSiteVerificationId: ''
 
 # Default SEO metadata
@@ -12,21 +12,45 @@ metadata:
   title:
     default: FAR QR — Managed Digital Menus, Free WiFi QR & Branded QRs
     template: '%s — FAR QR'
-  description: "Digitize your interactions with FAR QR. The simplest way to connect with customers using Managed Digital Menus & Pricelists, Free WiFi QRs, and professional Branded QRs."
+  
+  description: "Digitize your interactions with FAR QR. The simplest way to connect with customers using Managed Digital Menus, Free WiFi QRs, and professional Branded QRs."
+  
   robots:
     index: true
     follow: true
+
+  # [Giống Nhà may Liên] Danh sách từ khóa
+  keywords: "digital menu, wifi qr code, branded qr, contactless menu, qr code generator, menu qr miễn phí, tạo mã qr wifi"
+
   openGraph:
     site_name: FAR QR
+    url: 'https://farqr.com'
+    # [Giống Nhà may Liên] Dùng 'article' để có quyền tác giả
+    type: article
+    
+    # [Giống Nhà may Liên] Khai báo chi tiết tác giả/fanpage
+    article:
+      authors: 
+        - 'https://www.facebook.com/FARQR'
+      publisher: 'https://www.facebook.com/FARQR'
+      section: 'Technology'
+      tags:
+        - 'Digital Menu'
+        - 'WiFi QR'
+
     images:
-      - url: '~/assets/images/social-farqr.png' # Remember to replace this image
+      - url: 'https://farqr.com/social.png' # QUAN TRỌNG: Trỏ thẳng vào ảnh trong thư mục public
         width: 1200
         height: 628
-    type: website
+        alt: 'FAR QR - Digital Menus, WiFi Connect & Branded Solutions'
+        type: 'image/png'
+
   twitter:
-    handle: '@FarQR_com' # Replace with your actual twitter handle if available, else leave empty
+    handle: '@FarQR_com'
     site: '@FarQR_com'
     cardType: summary_large_image
+    # Astrowind sẽ tự động lấy ảnh từ openGraph.images ở trên để làm twitter:image
+    # Điều này đảm bảo khi share lên X (Twitter) sẽ hiện ảnh to đẹp.
 
 i18n:
   language: en
@@ -36,38 +60,33 @@ apps:
   blog:
     isEnabled: true
     postsPerPage: 6
-
     post:
       isEnabled: true
       permalink: '/%slug%' 
       robots:
         index: true
-
     list:
       isEnabled: true
       pathname: 'blog'
       robots:
         index: true
-
     category:
       isEnabled: true
       pathname: 'category'
       robots:
         index: true
-
     tag:
       isEnabled: true
       pathname: 'tag'
       robots:
         index: false
-
     isRelatedPostsEnabled: true
     relatedPostsCount: 4
 
 analytics:
   vendors:
     googleAnalytics:
-      id: null # Fill in your G-xxxxxxxxx code here
+      id: null
 
 ui:
-  theme: 'light' # Default to Light for a professional service site
+  theme: 'light'
