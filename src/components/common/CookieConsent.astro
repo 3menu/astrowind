@@ -2,16 +2,32 @@
   id="cookie-banner"
   class="fixed bottom-0 left-0 z-50 w-full bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 shadow-lg transition-transform duration-300 translate-y-full"
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
-      <p>
-        We use cookies to ensure you get the best experience on our website. 
-        <a href="/privacy" class="text-primary hover:underline dark:text-blue-400">Learn more</a>
+  <!-- 
+    Thay đổi chính: 
+    - px-3 py-2: Giảm padding để thanh gọn hơn.
+    - flex-row: Luôn xếp ngang (kể cả trên mobile).
+    - gap-2: Khoảng cách giữa chữ và nút nhỏ lại.
+  -->
+  <div class="max-w-6xl mx-auto px-3 py-3 flex flex-row items-center justify-between gap-3">
+    
+    <!-- Phần nội dung text -->
+    <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-center">
+      <p class="mr-1">
+        We use cookies. <!-- Nội dung rút gọn tối đa -->
       </p>
+      <a href="/privacy" class="text-blue-600 hover:underline dark:text-blue-400 font-medium whitespace-nowrap">
+        Learn more
+      </a>
     </div>
+
+    <!-- Nút bấm -->
+    <!-- 
+      - whitespace-nowrap: Không cho nút bị xuống dòng.
+      - py-1.5 px-3: Nút nhỏ gọn hơn nút mặc định.
+    -->
     <button
       id="cookie-accept"
-      class="btn-primary px-6 py-2 rounded-lg text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      class="whitespace-nowrap px-4 py-1.5 rounded text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-sm"
     >
       Got it!
     </button>
@@ -19,26 +35,20 @@
 </div>
 
 <script is:inline>
-  // Chạy ngay lập tức để kiểm tra
   (function () {
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept');
     const STORAGE_KEY = 'farqr_cookie_consent';
 
-    // Kiểm tra xem user đã bấm Got it chưa
     if (!localStorage.getItem(STORAGE_KEY)) {
-      // Nếu chưa, đợi 1 chút rồi trượt banner lên
       setTimeout(() => {
         banner.classList.remove('translate-y-full');
       }, 500);
     }
 
-    // Xử lý sự kiện click
     if (acceptBtn) {
       acceptBtn.addEventListener('click', () => {
-        // Lưu vào bộ nhớ trình duyệt
         localStorage.setItem(STORAGE_KEY, 'true');
-        // Ẩn banner đi
         banner.classList.add('translate-y-full');
       });
     }
