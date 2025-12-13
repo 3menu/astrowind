@@ -5,7 +5,7 @@ layout: '~/layouts/MarkdownLayout.astro'
 
 _Last updated_: December 12, 2025
 
-Please read these terms and conditions carefully before using Our Service.
+Please read these terms and conditions carefully before using the Service.
 
 ## Interpretation and Definitions
 
@@ -21,7 +21,7 @@ For the purposes of these Terms and Conditions:
 
 - **Country** refers to: Vietnam.
 
-- **FAR QR** (referred to as either "FAR QR", "We", "Us" or "Our" in this Agreement) refers to the individual business operating the website. **Note: FAR QR is operated as an individual freelancer business, not a registered corporation.**
+- **FAR QR** (referred to as "FAR QR", "The Platform", or "The Service" in this Agreement) refers to the independent platform and the individual developer operating the website. **Note: FAR QR is operated as an individual freelancer business, not a registered corporation.**
 
 - **Device** means any device that can access the Service such as a computer, a cellphone or a digital tablet.
 
@@ -54,7 +54,7 @@ You retain all rights and ownership of the content, images, logos, prices, and t
 By uploading User Content, You represent and warrant that:
 1.  You have the lawful right to use, display, and distribute such content.
 2.  The content is accurate and does not mislead consumers (e.g., accurate pricing on menus).
-3.  **FAR QR is not responsible** for any content posted by You. You bear full legal responsibility for any claims, damages, or lawsuits arising from the content You publish via our QR codes or Digital Menus.
+3.  **FAR QR is not responsible** for any content posted by You. You bear full legal responsibility for any claims, damages, or lawsuits arising from the content You publish via FAR QR codes or Digital Menus.
 
 ## Prohibited Uses
 
@@ -71,15 +71,15 @@ You agree not to use the Service for any unlawful purpose or any purpose prohibi
 ## Subscriptions, Payments, and Refunds
 
 ### Free Trial
-We provide a **7-day free trial** for our Premium features. During this period, you have full access to test the functionality of our Service (creating menus, managing QR codes, etc.) to ensure it meets your needs.
+A **7-day free trial** is provided for Premium features. During this period, full access is granted to test the functionality of the Service (creating menus, managing QR codes, etc.) to ensure it meets specific requirements.
 
 ### No Refund Policy
-Because we offer a comprehensive free trial period for you to evaluate the Service, **all payments made via PayPal are final and non-refundable**. By upgrading to a paid plan or purchasing a Branded QR, You acknowledge that You have successfully tested the Service and are satisfied with its functionality.
+Because a comprehensive free trial period is offered for evaluation, **all payments made via PayPal are final and non-refundable**. By upgrading to a paid plan or purchasing a Branded QR, You acknowledge that the Service has been successfully tested and meets Your satisfaction.
 
 ### Payment and Taxes
 - **Individual Business Status:** FAR QR operates as an individual freelancer business in Vietnam.
-- **No VAT Invoices:** We **cannot** issue Value Added Tax (VAT) invoices or official corporate tax receipts. The transaction receipt provided by PayPal serves as your only proof of payment.
-- **Payment Method:** All transactions are processed securely through PayPal. We do not store your credit card or banking information on our servers.
+- **No VAT Invoices:** Value Added Tax (VAT) invoices or official corporate tax receipts **cannot be issued**. The transaction receipt provided by PayPal serves as the only proof of payment.
+- **Payment Method:** All transactions are processed securely through PayPal. Credit card or banking information is **not stored** on FAR QR servers.
 
 ### Branded QR Services
 For "Branded QR" services (Pay-per-product): You are responsible for providing the correct URL and high-quality Logo files. Once the payment is made and the QR code is delivered via email, the service is considered fulfilled.
@@ -87,11 +87,11 @@ For "Branded QR" services (Pay-per-product): You are responsible for providing t
 ## Availability and Limitation of Liability
 
 ### Third-Party Infrastructure (Cloudflare)
-Our Service relies on third-party infrastructure, specifically **Cloudflare**, to ensure security, speed, and availability globally. By using the Service, You acknowledge and agree that:
+The Service relies on third-party infrastructure, specifically **Cloudflare**, to ensure security, speed, and availability globally. By using the Service, You acknowledge and agree that:
 
-1.  **No Guarantee of Uptime:** While we strive for high availability, we cannot guarantee 100% uptime.
-2.  **Force Majeure:** Disruptions caused by Cloudflare outages, global internet routing issues, or third-party server failures are considered "Force Majeure" events beyond Our control.
-3.  **Exclusion of Liability for Business Loss:** FAR QR shall **not be liable** for any loss of business, loss of revenue, loss of customers, or damage to reputation caused by the temporary unavailability of the Service (e.g., if your customers cannot scan a menu due to a server outage).
+1.  **No Guarantee of Uptime:** While high availability is the goal, 100% uptime cannot be guaranteed.
+2.  **Force Majeure:** Disruptions caused by Cloudflare outages, global internet routing issues, or third-party server failures are considered "Force Majeure" events beyond the control of FAR QR.
+3.  **Exclusion of Liability for Business Loss:** FAR QR shall **not be liable** for any loss of business, loss of revenue, loss of customers, or damage to reputation caused by the temporary unavailability of the Service (e.g., if customers cannot scan a menu due to a server outage).
 
 ### General Limitation
 To the maximum extent permitted by applicable law, in no event shall FAR QR be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service), even if FAR QR has been advised of the possibility of such damages.
@@ -100,13 +100,13 @@ To the maximum extent permitted by applicable law, in no event shall FAR QR be l
 
 ## Links to Other Websites
 
-Our Service may contain links to third-party web sites or services that are not owned or controlled by FAR QR.
+The Service may contain links to third-party web sites or services that are not owned or controlled by FAR QR.
 
 FAR QR has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that FAR QR shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.
 
 ## Termination
 
-We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.
+Access may be terminated or suspended immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.
 
 Upon termination, Your right to use the Service will cease immediately, and any active QR codes may be deactivated.
 
@@ -122,7 +122,7 @@ The laws of **Vietnam**, excluding its conflicts of law rules, shall govern this
 
 ## Disputes Resolution
 
-If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting FAR QR via our supported contact channels.
+If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting FAR QR via the supported contact channels.
 
 ## United States Legal Compliance
 
@@ -140,10 +140,10 @@ Except as provided herein, the failure to exercise a right or to require perform
 
 ## Changes to These Terms and Conditions
 
-We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.
+FAR QR reserves the right, at its sole discretion, to modify or replace these Terms at any time. By continuing to access or use the Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.
 
 ## Contact Us and Support
 
-If you have any questions about these Terms and Conditions or need support, You can <a href='/contact/' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> us via: **Email:** farqr.com@gmail.com
+If you have any questions about these Terms and Conditions or need support, You can <a href='/contact/' class='underline font-medium decoration-primary hover:text-primary transition duration-200'>contact</a> FAR QR support via: **Email:** farqr.com@gmail.com
 
-**Service Level Agreement (SLA):** We operate as a lean team. While we **strive** to respond to support inquiries within 24 to 48 business hours, please acknowledge that response times may be extended due to high inquiry volumes, technical difficulties, or **force majeure events** beyond our reasonable control.
+**Service Level Agreement (SLA):** FAR QR operates as an independently run platform. While the aim is to respond to support inquiries within 24 to 48 business hours, please acknowledge that response times may be extended due to high inquiry volumes, technical difficulties, or **force majeure events** beyond reasonable control.
