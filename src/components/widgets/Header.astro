@@ -181,90 +181,59 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <!-- CSS Tùy chỉnh cho Google Translate -->
 <style is:global>
-  /* --- 1. Container chính --- */
-  #google_translate_element {
-    position: relative;
-    z-index: 50;
-    line-height: normal;
-  }
+ .goog-te-gadget {
+     color: transparent !important;
+}
+.goog-logo-link,
+.activity-root,
+.status-message,
+.started-activity-container,
+#goog-gt-tt {
+  display: none !important;
+}
+ .goog-te-combo {
+     border-color: transparent;
+     font-family: Montserrat, sans-serif;
+     border: none;
+     margin: 0 !important;
+     background-color: transparent;
+     line-height: 40px;
+     background-color: #0215DA;
+     padding-right: 28px;
+     padding-left: 28px;
+     font-size: 13px;
+     text-transform: uppercase;
+     font-weight: 700;
+     color: #E4E4E4;
+     cursor: pointer;
+     width: auto !important;
+}
 
-  /* --- 2. Tinh chỉnh khung hiển thị (Gadget) --- */
-  .goog-te-gadget-simple {
-    background-color: transparent !important; /* Nền trong suốt */
-    border: none !important; /* Bỏ viền */
-    padding: 0 !important;   /* Bỏ padding thừa */
-    font-size: 1rem !important; /* Cỡ chữ bằng với menu */
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    transition: color 0.2s;
-  }
-
-  /* --- 3. Ẩn Logo Google và các phần tử thừa --- */
-  .goog-te-gadget-icon {
-    display: none !important;
-  }
-  /* Ẩn dấu gạch đứng ngăn cách | mà Google tự thêm */
-  .goog-te-menu-value span:nth-child(2) {
-    display: none !important;
-  }
-
-  /* --- 4. Chỉnh màu chữ (Text) --- */
-  /* Span đầu tiên là tên ngôn ngữ */
-  .goog-te-menu-value span:first-child {
-    font-family: inherit !important; /* Dùng font của web */
-    font-weight: 600 !important;     /* Độ đậm chữ */
-    color: #111827 !important;       /* Màu đen (Light mode) */
-    padding-right: 4px; /* Khoảng cách với mũi tên */
-  }
-
-  /* Dark mode: Chuyển chữ sang màu trắng */
-  :global(.dark) .goog-te-menu-value span:first-child {
-    color: #ffffff !important;
-  }
-
-  /* Hover effect: Đổi màu khi di chuột vào (giống link menu) */
-  #google_translate_element:hover .goog-te-menu-value span:first-child {
-    color: #3b82f6 !important; /* Màu xanh (Link hover color) */
-  }
-
-  /* --- 5. Chỉnh mũi tên xuống (Dropdown arrow) --- */
-  /* Span cuối cùng thường là mũi tên */
-  .goog-te-menu-value span:last-child {
-    color: #6b7280 !important; /* Màu xám nhạt */
-    font-size: 12px !important;
-    opacity: 0.8;
-  }
-  :global(.dark) .goog-te-menu-value span:last-child {
-    color: #9ca3af !important;
-  }
-
-  /* --- 6. Ẩn thanh Banner "Translate" trên cùng body --- */
-  body {
-    top: 0px !important;
-  }
-  .goog-te-banner-frame {
-    display: none !important;
-  }
-  
-  /* Ẩn tooltip khi hover vào widget */
-  .goog-tooltip {
-    display: none !important;
-  }
-  .goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed {
-    color: inherit !important;
-  }
 </style>
 
 <!-- Script khởi tạo -->
 <script is:inline>
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,bn,hi,ar,fr,es,vi', // Thêm 'vi' nếu cần
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-      autoDisplay: false
-    }, 'google_translate_element');
+ function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'vi',
+    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+    gaTrack: true,
+    gaId: 'UA-92835670-1'
+  }, 'google_translate_element');
+
+  setTimeout(function() {
+        if (document.querySelector("select.goog-te-combo option:first-child") != null && document.querySelector("select.goog-te-combo option:first-child").value == '') {
+          document.querySelector("select.goog-te-combo option:first-child").textContent = "Language";    }
+    }, 1000);
+  
+window.addEventListener('load', function() {
+  let translateLink = document.querySelector('.skiptranslate .VIpgJd-ZVi9od-l4eHX-hSRGPd');
+  if (translateLink) {
+    translateLink.textContent = '';
   }
+});
+
+}
+
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
