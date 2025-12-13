@@ -70,15 +70,50 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       },
     ]}
   >
-    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={getHomePermalink()}>
-        <Logo />
-      </a>
-      <div class="flex items-center md:hidden">
+    <!-- KHU VỰC BÊN TRÁI: LOGO + GOOGLE TRANSLATE -->
+    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between items-center']}>
+      
+      <!-- Wrapper bao quanh Logo và Translate để chúng nằm cạnh nhau -->
+      <div class="flex items-center gap-2">
+        
+        <!-- 1. Logo -->
+        <a class="flex items-center" href={getHomePermalink()}>
+          <Logo />
+        </a>
+
+        <!-- 2. Google Translate Dropdown (Đã chuyển về đây) -->
+        <!-- Bọc trong thẻ ul flex để giữ đúng style của Astrowind -->
+        <ul class="flex flex-row">
+          <li class="dropdown">
+            <button class="flex items-center px-2 md:px-4 dark:hover:text-white hover:text-link py-3 whitespace-nowrap text-sm md:text-base font-medium" type="button">
+              <Icon name="tabler:language" class="w-5 h-5 md:mr-1" />
+              <!-- Ẩn chữ 'Language' trên mobile để tiết kiệm diện tích, chỉ hiện icon -->
+              <span class="hidden md:inline">Language</span>
+              <svg class="rtl:ml-0 h-3.5 hidden md:inline ml-0.5 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><path d="m6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <ul class="dark:md:bg-dark drop-shadow-xl dropdown-menu font-medium md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded bg-white/90 absolute top-full left-0 hidden group-hover:block">
+              <!-- Tiếng Việt -->
+              <li><a class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" onclick="changeLanguage('vi')">🇻🇳 Tiếng Việt</a></li>
+              <!-- English -->
+              <li><a class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" onclick="changeLanguage('en')">🇺🇸 English</a></li>
+              <!-- Japanese -->
+              <li><a class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" onclick="changeLanguage('ja')">🇯🇵 日本語</a></li>
+              <!-- Chinese -->
+              <li><a class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" onclick="changeLanguage('zh-CN')">🇨🇳 中文</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile Toggle Button (Giữ nguyên) -->
+      <div class="flex items-center md:hidden ml-4">
         <ToggleMenu />
       </div>
     </div>
     
+    <!-- MENU CHÍNH (Đã xóa phần Translate ở đây) -->
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
@@ -128,57 +163,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             </li>
           ))
         }
-
-        <!-- === BẮT ĐẦU PHẦN TÙY CHỈNH GOOGLE TRANSLATE DROPDOWN === -->
-        <!-- Đây là Dropdown giả lập giao diện Astrowind -->
-        <li class="dropdown">
-          <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap">
-            <Icon name="tabler:language" class="w-5 h-5 md:mr-1" /> 
-            <span class="hidden md:inline">Language</span>
-            <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
-          </button>
-          
-          <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-            <!-- Item: Tiếng Việt -->
-            <li>
-              <button 
-                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
-                onclick="doGTranslate('vi'); return false;"
-              >
-                🇻🇳 Tiếng Việt
-              </button>
-            </li>
-            <!-- Item: English -->
-            <li>
-              <button 
-                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
-                onclick="doGTranslate('en'); return false;"
-              >
-                🇺🇸 English
-              </button>
-            </li>
-            <!-- Item: Japanese -->
-             <li>
-              <button 
-                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
-                onclick="doGTranslate('ja'); return false;"
-              >
-                🇯🇵 日本語
-              </button>
-            </li>
-             <!-- Item: Chinese -->
-             <li>
-              <button 
-                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
-                onclick="doGTranslate('zh-CN'); return false;"
-              >
-                🇨🇳 中文
-              </button>
-            </li>
-          </ul>
-        </li>
-        <!-- === KẾT THÚC PHẦN TÙY CHỈNH === -->
-
       </ul>
     </nav>
     <div
@@ -217,72 +201,39 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
   
-  <!-- Nơi chứa widget Google Translate thật (Sẽ bị ẩn bằng CSS) -->
-  <div id="google_translate_element" class="hidden-google-widget"></div>
+  <div id="google_translate_element" style="display:none;"></div>
 </header>
 
-<!-- STYLES: Ẩn widget gốc và xử lý giao diện -->
 <style is:global>
-  /* Ẩn hoàn toàn widget Google gốc, chỉ chừa lại chức năng */
-  .hidden-google-widget {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    z-index: -1;
-  }
-
-  /* Ẩn thanh công cụ "Translate" trên cùng của Google */
-  .goog-te-banner-frame.skiptranslate {
-      display: none !important;
-  }
-  body {
-      top: 0px !important; 
-  }
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0px !important; }
+  .goog-tooltip { display: none !important; }
+  .goog-tooltip:hover { display: none !important; }
+  .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   
-  /* Ẩn tooltip khi hover vào văn bản */
-  .goog-tooltip {
-      display: none !important;
-  }
-  .goog-tooltip:hover {
-      display: none !important;
-  }
-  .goog-text-highlight {
-      background-color: transparent !important;
-      border: none !important; 
-      box-shadow: none !important;
+  /* Bổ sung CSS để dropdown hiển thị đúng khi hover ở vị trí mới */
+  .dropdown:hover .dropdown-menu {
+    display: block;
   }
 </style>
 
-<!-- SCRIPTS: Logic kết nối Dropdown Custom với Google Translate -->
 <script is:inline>
-  // 1. Hàm khởi tạo Google Translate
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'vi', // Ngôn ngữ gốc trang web của bạn
-      includedLanguages: 'en,vi,ja,zh-CN', // Các ngôn ngữ muốn hỗ trợ
+      pageLanguage: 'vi',
+      includedLanguages: 'en,vi,ja,zh-CN',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       autoDisplay: false
     }, 'google_translate_element');
   }
 
-  // 2. Hàm kích hoạt dịch khi click vào Custom Dropdown
-  function doGTranslate(langPair) {
-    const wrapper = document.getElementById('google_translate_element');
-    if(!wrapper) return;
-
-    // Tìm thẻ select ẩn của Google
-    const select = wrapper.querySelector('select.goog-te-combo');
-    
+  function changeLanguage(langCode) {
+    const select = document.querySelector('.goog-te-combo');
     if (select) {
-      select.value = langPair;
-      // Kích hoạt sự kiện change để Google bắt đầu dịch
+      select.value = langCode;
       select.dispatchEvent(new Event('change'));
     }
   }
 </script>
 
-<!-- Load Script từ Google -->
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
