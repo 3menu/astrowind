@@ -86,7 +86,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       <ul
         class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
       >
-        {/* Render các menu link có sẵn từ props */}
         {
           links.map(({ text, href, links }) => (
             <li class={links?.length ? 'dropdown' : ''}>
@@ -130,56 +129,55 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           ))
         }
 
-        <!-- === PHẦN CUSTOM: GOOGLE TRANSLATE DROPDOWN === -->
-        <!-- Sử dụng đúng cấu trúc <li class="dropdown">...</ul> của Astrowind -->
+        <!-- === BẮT ĐẦU PHẦN TÙY CHỈNH GOOGLE TRANSLATE DROPDOWN === -->
+        <!-- Đây là Dropdown giả lập giao diện Astrowind -->
         <li class="dropdown">
-          <button class="flex items-center px-4 dark:hover:text-white hover:text-link py-3 whitespace-nowrap" type="button">
-            <Icon name="tabler:language" class="w-5 h-5 mr-1" />
-            Language
-            <!-- Mũi tên SVG giống code mẫu của bạn -->
-            <svg class="rtl:ml-0 h-3.5 hidden md:inline ml-0.5 rtl:mr-0.5 w-3.5" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24"><path d="m6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          <button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap">
+            <Icon name="tabler:language" class="w-5 h-5 md:mr-1" /> 
+            <span class="hidden md:inline">Language</span>
+            <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
           </button>
           
-          <ul class="dark:md:bg-dark drop-shadow-xl dropdown-menu font-medium md:absolute md:backdrop-blur-md md:bg-white/90 md:hidden md:min-w-[200px] md:pl-0 pl-4 rounded">
-            <!-- Tiếng Việt -->
+          <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+            <!-- Item: Tiếng Việt -->
             <li>
-              <a 
-                class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" 
-                onclick="changeLanguage('vi')"
+              <button 
+                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
+                onclick="doGTranslate('vi'); return false;"
               >
                 🇻🇳 Tiếng Việt
-              </a>
+              </button>
             </li>
-            <!-- Tiếng Anh -->
+            <!-- Item: English -->
             <li>
-              <a 
-                class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" 
-                onclick="changeLanguage('en')"
+              <button 
+                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
+                onclick="doGTranslate('en'); return false;"
               >
                 🇺🇸 English
-              </a>
+              </button>
             </li>
-             <!-- Tiếng Nhật -->
+            <!-- Item: Japanese -->
              <li>
-              <a 
-                class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" 
-                onclick="changeLanguage('ja')"
+              <button 
+                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
+                onclick="doGTranslate('ja'); return false;"
               >
                 🇯🇵 日本語
-              </a>
+              </button>
             </li>
-            <!-- Tiếng Trung -->
+             <!-- Item: Chinese -->
              <li>
-              <a 
-                class="first:rounded-t block dark:hover:bg-gray-700 dark:hover:text-white hover:text-link last:rounded-b md:hover:bg-gray-100 px-5 py-2 whitespace-no-wrap cursor-pointer" 
-                onclick="changeLanguage('zh-CN')"
+              <button 
+                class="w-full text-left first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap cursor-pointer"
+                onclick="doGTranslate('zh-CN'); return false;"
               >
                 🇨🇳 中文
-              </a>
+              </button>
             </li>
           </ul>
         </li>
-        <!-- === KẾT THÚC PHẦN CUSTOM === -->
+        <!-- === KẾT THÚC PHẦN TÙY CHỈNH === -->
 
       </ul>
     </nav>
@@ -219,57 +217,72 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
   
-  <!-- WIDGET GOOGLE ẨN (Để thực hiện chức năng dịch ngầm) -->
-  <div id="google_translate_element" style="display:none;"></div>
+  <!-- Nơi chứa widget Google Translate thật (Sẽ bị ẩn bằng CSS) -->
+  <div id="google_translate_element" class="hidden-google-widget"></div>
 </header>
 
+<!-- STYLES: Ẩn widget gốc và xử lý giao diện -->
 <style is:global>
-  /* Ẩn thanh banner top frame của Google */
-  .goog-te-banner-frame {
-    display: none !important;
+  /* Ẩn hoàn toàn widget Google gốc, chỉ chừa lại chức năng */
+  .hidden-google-widget {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    z-index: -1;
+  }
+
+  /* Ẩn thanh công cụ "Translate" trên cùng của Google */
+  .goog-te-banner-frame.skiptranslate {
+      display: none !important;
   }
   body {
-    top: 0px !important;
+      top: 0px !important; 
   }
-  /* Ẩn các tooltip khi hover */
+  
+  /* Ẩn tooltip khi hover vào văn bản */
   .goog-tooltip {
-    display: none !important;
+      display: none !important;
   }
   .goog-tooltip:hover {
-    display: none !important;
+      display: none !important;
   }
   .goog-text-highlight {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+      background-color: transparent !important;
+      border: none !important; 
+      box-shadow: none !important;
   }
 </style>
 
+<!-- SCRIPTS: Logic kết nối Dropdown Custom với Google Translate -->
 <script is:inline>
-  // Hàm này Google sẽ gọi tự động khi load script
+  // 1. Hàm khởi tạo Google Translate
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'vi', // Ngôn ngữ mặc định của web
-      includedLanguages: 'en,vi,ja,zh-CN', // Các ngôn ngữ hỗ trợ
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      pageLanguage: 'vi', // Ngôn ngữ gốc trang web của bạn
+      includedLanguages: 'en,vi,ja,zh-CN', // Các ngôn ngữ muốn hỗ trợ
       autoDisplay: false
     }, 'google_translate_element');
   }
 
-  // Hàm xử lý sự kiện click từ Menu đẹp của bạn
-  function changeLanguage(langCode) {
-    // 1. Tìm thẻ select ẩn mà Google tạo ra
-    const select = document.querySelector('.goog-te-combo');
+  // 2. Hàm kích hoạt dịch khi click vào Custom Dropdown
+  function doGTranslate(langPair) {
+    const wrapper = document.getElementById('google_translate_element');
+    if(!wrapper) return;
+
+    // Tìm thẻ select ẩn của Google
+    const select = wrapper.querySelector('select.goog-te-combo');
     
     if (select) {
-      // 2. Gán giá trị
-      select.value = langCode;
-      // 3. Kích hoạt sự kiện change để Google nhận biết
+      select.value = langPair;
+      // Kích hoạt sự kiện change để Google bắt đầu dịch
       select.dispatchEvent(new Event('change'));
-    } else {
-      console.warn("Chưa tìm thấy Google Translate Widget. Vui lòng đợi tải trang.");
     }
   }
 </script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Load Script từ Google -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
