@@ -81,17 +81,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </a>
         <!-- 2. Google Translate (Style giống nút Services) -->
         <!-- Wrapper này đóng vai trò như thẻ <button> của dropdown -->
-        <div class="flex items-center px-4 py-3 cursor-pointer transition-colors duration-200 hover:text-link dark:hover:text-white whitespace-nowrap group">
-          
-          <!-- Widget Google -->
-          <div id="google_translate_element"></div>
-          
-          <!-- Icon Mũi tên (Chevron Down) - Copy y nguyên từ mẫu của bạn -->
-          <svg class="h-3.5 w-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline text-gray-500 dark:text-gray-400 group-hover:text-link dark:group-hover:text-white transition-colors" data-icon="tabler:chevron-down" height="1em" width="1em" viewBox="0 0 24 24">
-             <path d="m6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-
-        </div>
+        <div id="google_translate_element"></div>
       </div>
       {/* --- END MODIFIED SECTION --- */}
 
@@ -191,51 +181,76 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <!-- CSS Tùy chỉnh cho Google Translate -->
 <style is:global>
-  /* --- Cấu hình cho Container Google Dịch --- */
+  /* --- 1. Container chính --- */
   #google_translate_element {
-    display: inline-block;
+    position: relative;
+    z-index: 50;
     line-height: normal;
   }
 
-  /* --- Xóa bỏ giao diện mặc định của Google --- */
+  /* --- 2. Tinh chỉnh khung hiển thị (Gadget) --- */
   .goog-te-gadget-simple {
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    font-size: 1rem !important; /* Khớp với font menu */
-    font-family: inherit !important;
+    background-color: transparent !important; /* Nền trong suốt */
+    border: none !important; /* Bỏ viền */
+    padding: 0 !important;   /* Bỏ padding thừa */
+    font-size: 1rem !important; /* Cỡ chữ bằng với menu */
+    display: flex !important;
+    align-items: center !important;
     cursor: pointer !important;
+    transition: color 0.2s;
   }
 
-  /* --- Ẩn các thành phần thừa --- */
-  .goog-te-gadget-icon { display: none !important; } /* Ẩn logo G */
-  .goog-te-menu-value span:nth-child(2) { display: none !important; } /* Ẩn dấu gạch dọc | */
-  .goog-te-menu-value span:last-child { display: none !important; } /* Ẩn mũi tên mặc định của Google */
+  /* --- 3. Ẩn Logo Google và các phần tử thừa --- */
+  .goog-te-gadget-icon {
+    display: none !important;
+  }
+  /* Ẩn dấu gạch đứng ngăn cách | mà Google tự thêm */
+  .goog-te-menu-value span:nth-child(2) {
+    display: none !important;
+  }
 
-  /* --- Chỉnh font chữ hiển thị (Tiếng Việt, English...) --- */
+  /* --- 4. Chỉnh màu chữ (Text) --- */
+  /* Span đầu tiên là tên ngôn ngữ */
   .goog-te-menu-value span:first-child {
-    font-family: inherit !important;
-    font-weight: 500 !important; /* Độ đậm khớp với menu AstroWind */
-    color: inherit !important;   /* Thừa hưởng màu từ class Tailwind cha */
-    font-size: 0.9375rem !important; /* ~15px, khớp text menu */
+    font-family: inherit !important; /* Dùng font của web */
+    font-weight: 600 !important;     /* Độ đậm chữ */
+    color: #111827 !important;       /* Màu đen (Light mode) */
+    padding-right: 4px; /* Khoảng cách với mũi tên */
   }
 
-  /* --- Xử lý Hover (Quan trọng) --- */
-  /* Khi hover vào div cha, text của Google cũng đổi màu theo */
-  .group:hover .goog-te-menu-value span:first-child {
-    color: rgb(29, 78, 216) !important; /* Màu xanh link mặc định của AstroWind */
-  }
-  :global(.dark) .group:hover .goog-te-menu-value span:first-child {
-    color: #ffffff !important; /* Màu trắng khi dark mode */
+  /* Dark mode: Chuyển chữ sang màu trắng */
+  :global(.dark) .goog-te-menu-value span:first-child {
+    color: #ffffff !important;
   }
 
-  /* --- Ẩn Banner Google trên cùng body --- */
-  body { top: 0px !important; }
-  .goog-te-banner-frame { display: none !important; }
-  .goog-tooltip { display: none !important; }
+  /* Hover effect: Đổi màu khi di chuột vào (giống link menu) */
+  #google_translate_element:hover .goog-te-menu-value span:first-child {
+    color: #3b82f6 !important; /* Màu xanh (Link hover color) */
+  }
+
+  /* --- 5. Chỉnh mũi tên xuống (Dropdown arrow) --- */
+  /* Span cuối cùng thường là mũi tên */
+  .goog-te-menu-value span:last-child {
+    color: #6b7280 !important; /* Màu xám nhạt */
+    font-size: 12px !important;
+    opacity: 0.8;
+  }
+  :global(.dark) .goog-te-menu-value span:last-child {
+    color: #9ca3af !important;
+  }
+
+  /* --- 6. Ẩn thanh Banner "Translate" trên cùng body --- */
+  body {
+    top: 0px !important;
+  }
+  .goog-te-banner-frame {
+    display: none !important;
+  }
   
-  /* Fix lỗi hiển thị link hover của Google */
+  /* Ẩn tooltip khi hover vào widget */
+  .goog-tooltip {
+    display: none !important;
+  }
   .goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed {
     color: inherit !important;
   }
