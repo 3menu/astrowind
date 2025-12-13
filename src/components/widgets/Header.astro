@@ -73,15 +73,15 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
       
       {/* --- START MODIFIED SECTION --- */}
-      {/* Gom nhóm Google Dịch và Logo vào một div flex để nằm cạnh nhau */}
-      <div class="flex items-center">
+      <div class="flex items-center gap-4"> {/* Thêm gap-4 để logo và translate không dính nhau */}
         <!-- Logo -->
         <a class="flex items-center" href={getHomePermalink()}>
           <Logo />
         </a>
-        <!-- 2. Google Translate (Style giống nút Services) -->
-        <!-- Wrapper này đóng vai trò như thẻ <button> của dropdown -->
-        <div id="google_translate_element"></div>
+        
+        <!-- Google Translate Wrapper -->
+        <!-- Ẩn trên mobile nếu muốn (thêm hidden md:block) hoặc để nguyên -->
+        <div id="google_translate_element" class="flex items-center justify-center"></div>
       </div>
       {/* --- END MODIFIED SECTION --- */}
 
@@ -177,63 +177,100 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   </div>
 </header>
 
-<!-- GOOGLE TRANSLATE SCRIPTS & STYLES -->
-
-<!-- CSS Tùy chỉnh cho Google Translate -->
+<!-- STYLES TỐI ƯU CHO ASTROWIND -->
 <style is:global>
- .goog-te-gadget {
-     color: transparent !important;
-}
-.goog-logo-link,
-.activity-root,
-.status-message,
-.started-activity-container,
-#goog-gt-tt {
-  display: none !important;
-}
- .goog-te-combo {
-     border-color: transparent;
-     font-family: Inter Variable, sans-serif;
-     border: none;
-     margin: 0 !important;
-     background-color: transparent;
-     line-height: 40px;
-     background-color: #0215DA;
-     padding-right: 28px;
-     padding-left: 28px;
-     font-size: 13px;
-     text-transform: uppercase;
-     font-weight: 500;
-     color: #E4E4E4;
-     cursor: pointer;
-     width: auto !important;
-}
+  /* Ẩn các thành phần thừa của Google */
+  .goog-te-gadget {
+    color: transparent !important;
+    font-size: 0 !important;
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin: 0 !important;
+  }
+  .goog-logo-link,
+  .goog-te-gadget span,
+  .activity-root,
+  .status-message,
+  .started-activity-container,
+  #goog-gt-tt,
+  .skiptranslate > iframe { 
+    /* Ẩn banner trên cùng */
+    display: none !important; 
+  }
+  
+  /* Reset body top padding do google translate gây ra */
+  body {
+    top: 0 !important;
+  }
 
+  /* --- Styling thanh Select (Dropdown) --- */
+  select.goog-te-combo {
+    appearance: none; /* Xóa style mặc định */
+    background-color: transparent;
+    border: 1px solid transparent; 
+    
+    /* Font & Size giống Header Link */
+    font-family: var(--aw-font-sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    /* Padding & Layout */
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    
+    /* Màu sắc mặc định (Light Mode) */
+    color: #4b5563; /* text-gray-600 */
+  }
+
+  /* Hover state (Light Mode) */
+  select.goog-te-combo:hover {
+    color: var(--aw-color-primary, #1d4ed8); /* Màu primary hoặc xanh */
+    background-color: rgba(0,0,0, 0.05);
+  }
+
+  /* --- DARK MODE CONFIGURATION --- */
+  /* Khi thẻ html có class 'dark', style bên trong sẽ thay đổi */
+  html.dark select.goog-te-combo {
+    color: #9ca3af; /* text-gray-400 */
+  }
+
+  html.dark select.goog-te-combo:hover {
+    color: #ffffff; /* text-white */
+    background-color: rgba(255,255,255, 0.1);
+  }
+
+  /* Tùy chỉnh mũi tên dropdown (nếu muốn hiển thị rõ hơn thì dùng background-image, nhưng để transparent cho tối giản) */
+  select.goog-te-combo option {
+    color: #000; /* Option bên trong luôn màu đen để dễ đọc trên nền trắng mặc định của browser select */
+  }
 </style>
 
-<!-- Script khởi tạo -->
 <script is:inline>
  function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'vi',
+    includedLanguages: 'en,vi,ja,ko,zh-CN', /* Gợi ý: Chỉ nên để các ngôn ngữ cần thiết cho gọn */
     layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+    autoDisplay: false,
     gaTrack: true,
     gaId: 'UA-92835670-1'
   }, 'google_translate_element');
 
-  setTimeout(function() {
-        if (document.querySelector("select.goog-te-combo option:first-child") != null && document.querySelector("select.goog-te-combo option:first-child").value == '') {
-          document.querySelector("select.goog-te-combo option:first-child").textContent = "Language";    }
-    }, 1000);
-  
-window.addEventListener('load', function() {
-  let translateLink = document.querySelector('.skiptranslate .VIpgJd-ZVi9od-l4eHX-hSRGPd');
-  if (translateLink) {
-    translateLink.textContent = '';
-  }
-});
-
+  // Đổi chữ mặc định "Select Language" thành "Language" hoặc icon
+  const changeTextInterval = setInterval(function() {
+        const select = document.querySelector("select.goog-te-combo");
+        const firstOption = document.querySelector("select.goog-te-combo option:first-child");
+        
+        if (select && firstOption) {
+          if (firstOption.value == '') {
+            firstOption.textContent = "Language"; // Hoặc "🌐 EN/VI"
+          }
+          clearInterval(changeTextInterval);
+        }
+    }, 500);
 }
-
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
