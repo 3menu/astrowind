@@ -71,9 +71,20 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     ]}
   >
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={getHomePermalink()}>
-        <Logo />
-      </a>
+      
+      {/* --- START MODIFIED SECTION --- */}
+      {/* Gom nhóm Google Dịch và Logo vào một div flex để nằm cạnh nhau */}
+      <div class="flex items-center">
+        <!-- Google Translate Container -->
+        <div id="google_translate_element" class="mr-2"></div>
+        
+        <!-- Logo -->
+        <a class="flex items-center" href={getHomePermalink()}>
+          <Logo />
+        </a>
+      </div>
+      {/* --- END MODIFIED SECTION --- */}
+
       <div class="flex items-center md:hidden">
         <ToggleMenu />
       </div>
@@ -165,3 +176,63 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<!-- GOOGLE TRANSLATE SCRIPTS & STYLES -->
+
+<!-- CSS Tùy chỉnh cho Google Translate -->
+<style is:global>
+  #google_translate_element {
+    position: relative; /* Quan trọng: để nó nằm trong dòng chảy layout thay vì fixed */
+    z-index: 50;
+  }
+  
+  /* Ẩn icon Google thừa */
+  .goog-te-gadget-icon {
+    display: none !important;
+  }
+
+  /* Tùy chỉnh nút chọn ngôn ngữ cho gọn và đẹp */
+  .goog-te-gadget-simple {
+    background-color: transparent !important;
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+    padding: 4px 6px !important;
+    border-radius: 4px !important;
+    font-size: 0.8rem !important;
+    line-height: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Màu chữ trong nút */
+  .goog-te-menu-value span {
+    color: inherit !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+  }
+  
+  /* Hỗ trợ Dark mode cho chữ */
+  :global(.dark) .goog-te-menu-value span {
+    color: #e5e7eb !important;
+  }
+
+  /* Ẩn thanh banner Google trên cùng trang */
+  body {
+    top: 0px !important;
+  }
+  .goog-te-banner-frame {
+    display: none !important;
+  }
+</style>
+
+<!-- Script khởi tạo -->
+<script is:inline>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,bn,hi,ar,fr,es,vi', // Thêm 'vi' nếu cần
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
