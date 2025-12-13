@@ -46,9 +46,9 @@ const {
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
-// DANH SÁCH 15 NGÔN NGỮ
+// DANH SÁCH NGÔN NGỮ
 const languages = [
-  { code: 'en', name: 'English' },
+  { code: 'en', name: 'English' }, // Ngôn ngữ gốc
   { code: 'vi', name: 'Tiếng Việt' },
   { code: 'zh-CN', name: '简体中文' }, 
   { code: 'zh-TW', name: '繁體中文' }, 
@@ -223,7 +223,9 @@ const languages = [
 </header>
 
 <style is:global>
-  /* ẨN GOOGLE FRAME */
+  /* === 1. ẨN CÁC PHẦN TỬ GIAO DIỆN CỦA GOOGLE === */
+  
+  /* Thanh Banner trên cùng */
   .goog-te-banner-frame,
   .skiptranslate iframe,
   iframe.goog-te-banner-frame,
@@ -233,22 +235,39 @@ const languages = [
     visibility: hidden !important;
     height: 0 !important;
   }
-  
+
+  /* 
+    TOOLTIP POPUP (Cái bạn muốn ẩn) 
+    #goog-gt-tt: ID của popup tooltip
+    .goog-te-balloon-frame: Class khung popup
+  */
+  #goog-gt-tt, 
+  .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important; /* Không cho click vào */
+    opacity: 0 !important;
+  }
+
+  /* Reset body tránh bị đẩy xuống */
   body {
     top: 0px !important; 
     position: static !important;
   }
   
+  /* Widget Select Ẩn */
   .hidden-google-widget {
     position: absolute;
     top: 0; left: 0; width: 0; height: 0;
     overflow: hidden; visibility: hidden; z-index: -1;
   }
 
+  /* Ẩn các tooltip nhỏ khác */
   .goog-tooltip { display: none !important; }
   .goog-tooltip:hover { display: none !important; }
   .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   
+  /* Hover Dropdown */
   li.dropdown:hover > .dropdown-menu {
       display: block;
   }
@@ -257,43 +276,37 @@ const languages = [
 <script is:inline>
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,zh-CN,zh-TW,es,pt,ja,ko,vi,th,id,fr,de,ru,ar,hi',
+      pageLanguage: 'en', // <--- ĐỔI SANG TIẾNG ANH LÀM GỐC
+      includedLanguages: 'en,vi,zh-CN,zh-TW,es,pt,ja,ko,th,id,fr,de,ru,ar,hi',
       autoDisplay: false
     }, 'google_translate_element');
   }
 
-  // HÀM XỬ LÝ DỊCH CHÍNH
   function doGTranslate(langPair) {
     const wrapper = document.getElementById('google_translate_element');
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
-    // 1. Nếu chọn Tiếng Việt (Gốc) -> Xóa Cookie và Reload để sạch sẽ
-    if (langPair === 'vi') {
-        // Xóa cookie googtrans
+    // === LOGIC MỚI: ENGLISH LÀ GỐC ===
+    // Nếu chọn 'en' (Tiếng Anh) -> Reset về trang gốc
+    if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
-        // Reload lại trang để hiển thị nội dung gốc
         location.reload();
         return;
     }
 
-    // 2. Nếu chọn ngôn ngữ khác -> Cập nhật Cookie thủ công và Trigger
+    // Nếu chọn ngôn ngữ khác (bao gồm 'vi') -> Dịch
     if (select) {
-      // Ghi đè cookie ngay lập tức: /auto/ngon_ngu_dich
       const newCookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = newCookie;
-      
-      // Đồng thời cập nhật thêm cookie với domain để đảm bảo (fix lỗi kẹt cookie)
       document.cookie = `googtrans=/auto/${langPair}; path=/; domain=${location.hostname}`;
 
-      // Set value cho select và bắn sự kiện
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
     }
 
-    // 3. Hiệu ứng tắt Dropdown sau khi chọn
+    // Đóng menu
     const menus = document.querySelectorAll('.dropdown-menu');
     menus.forEach(menu => {
       menu.style.display = 'none';
