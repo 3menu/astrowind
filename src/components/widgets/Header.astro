@@ -63,7 +63,7 @@ const languages = [
   { code: 'pt', name: 'Português' },           
   { code: 'ru', name: 'Русский' },            
   { code: 'tr', name: 'Türkçe' },            
-  { code: 'ar', name: 'العربية' },            
+  { code: 'ar', name: 'العربية' }, // RTL Language
   { code: 'nl', name: 'Nederlands' }           
 ];
 ---
@@ -99,27 +99,16 @@ const languages = [
           <Logo />
         </a>
 
-        <!-- === DROPDOWN NGÔN NGỮ (v1.2 - BIGGER TEXT ON MOBILE) === -->
+        <!-- === DROPDOWN NGÔN NGỮ === -->
         <div class="ml-2 md:ml-4 block"> 
           <ul class="flex flex-row"> 
             <li class="dropdown relative group">
-              <!-- 
-                UPDATE STYLE BUTTON:
-                - text-xl: Chữ to trên mobile (bằng menu chính)
-                - md:text-sm: Chữ nhỏ lại trên desktop
-                - px-3: Tăng padding ngang trên mobile
-              -->
               <button type="button" class="hover:text-link dark:hover:text-white text-xl md:text-sm px-3 md:px-2 py-3 flex items-center whitespace-nowrap font-medium">
-                <!-- Icon to hơn trên mobile (w-6 h-6) -->
                 <Icon name="tabler:language" class="w-6 h-6 md:w-5 md:h-5 mr-1" /> 
                 <span>Language</span> 
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
-              <!-- 
-                UPDATE STYLE MENU:
-                - min-w-[200px]: Rộng hơn chút để chứa chữ to
-              -->
               <ul 
                 class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[200px] shadow-lg hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto"
                 style="-webkit-overflow-scrolling: touch; will-change: transform;"
@@ -127,12 +116,6 @@ const languages = [
                 {
                   languages.map((lang) => (
                     <li>
-                      <!-- 
-                        UPDATE STYLE ITEM:
-                        - text-xl: Chữ to trên mobile
-                        - md:text-sm: Chữ nhỏ trên desktop
-                        - py-3: Khoảng cách dòng lớn hơn trên mobile để dễ bấm
-                      -->
                       <button 
                         class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white text-xl md:text-sm py-3 md:py-2 px-4 block whitespace-no-wrap cursor-pointer"
                         onclick={`doGTranslate('${lang.code}')`}
@@ -245,7 +228,6 @@ const languages = [
 </header>
 
 <style is:global>
-  /* ẨN GIAO DIỆN GOOGLE */
   .goog-te-banner-frame,
   .skiptranslate iframe,
   iframe.goog-te-banner-frame,
@@ -289,6 +271,19 @@ const languages = [
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
+    // === XỬ LÝ RTL (Right-to-Left) ===
+    const rtlCodes = ['ar', 'he', 'fa', 'ur']; // Danh sách các mã ngôn ngữ RTL
+    const htmlTag = document.documentElement;
+
+    if (rtlCodes.includes(langPair)) {
+      htmlTag.setAttribute('dir', 'rtl');
+      htmlTag.classList.add('rtl'); // Thêm class để Tailwind hỗ trợ tốt hơn nếu cần
+    } else {
+      htmlTag.setAttribute('dir', 'ltr');
+      htmlTag.classList.remove('rtl');
+    }
+    // ==================================
+
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
@@ -306,7 +301,6 @@ const languages = [
 
     if (document.activeElement) document.activeElement.blur();
     
-    // Logic tắt Hover trên Mobile
     const dropdownParents = document.querySelectorAll('.dropdown');
     dropdownParents.forEach(parent => {
       parent.style.pointerEvents = 'none';
