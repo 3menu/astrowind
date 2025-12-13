@@ -4,28 +4,28 @@ site:
   base: '/'
   trailingSlash: false
 
-  # Bạn cần lấy mã từ Google Search Console điền vào đây sau
+  # You need to get the code from Google Search Console and fill it in here later
   googleSiteVerificationId: ''
 
 # Default SEO metadata
 metadata:
   title:
-    default: FAR QR — Personalized Dynamic QR Code Generator
+    default: FAR QR — Managed Digital Menus, Free WiFi QR & Branded QRs
     template: '%s — FAR QR'
-  description: "FAR QR helps you create personalized QR codes to update products & prices instantly. Giải pháp FAR QR giúp cập nhật nhanh giá và sản phẩm cho khách hàng."
+  description: "Digitize your interactions with FAR QR. The simplest way to connect with customers using Managed Digital Menus & Pricelists, Free WiFi QRs, and professional Branded QRs."
   robots:
     index: true
     follow: true
   openGraph:
     site_name: FAR QR
     images:
-      - url: '~/assets/images/social-farqr.png' # Bạn nhớ thay ảnh này
+      - url: '~/assets/images/social-farqr.png' # Remember to replace this image
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@farqr_com' # Thay bằng twitter của bạn nếu có, không thì để trống
-    site: '@farqr_com'
+    handle: '@FarQR_com' # Replace with your actual twitter handle if available, else leave empty
+    site: '@FarQR_com'
     cardType: summary_large_image
 
 i18n:
@@ -67,7 +67,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # Điền mã G-xxxxxxxxx của bạn vào đây
+      id: null # Fill in your G-xxxxxxxxx code here
 
 ui:
-  theme: 'light' # Nên để mặc định là Light cho trang dịch vụ chuyên nghiệp
+  theme: 'light' # Default to Light for a professional service site
