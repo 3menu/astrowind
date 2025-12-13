@@ -80,24 +80,28 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </a>
 
         <!-- === BẮT ĐẦU TRANSLATE DROPDOWN === -->
-        <!-- Đã XÓA class 'hidden' để hiện trên mobile. Thêm 'ml-2' để có khoảng cách nhỏ với logo -->
         <div class="ml-2 md:ml-4 block"> 
           <ul class="flex flex-row"> 
-            <!-- Thêm class relative để menu con bám dính nút mẹ -->
             <li class="dropdown relative group">
+              <!-- Button kích hoạt -->
               <button type="button" class="hover:text-link dark:hover:text-white px-1.5 md:px-2 py-3 flex items-center whitespace-nowrap">
                 <Icon name="tabler:language" class="w-5 h-5 md:mr-1" /> 
-                <!-- Chỉ hiện chữ Language trên màn hình lớn (md trở lên), mobile ẩn đi cho đỡ chật -->
                 <span class="hidden md:inline">Language</span> 
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
               <!-- Dropdown Menu -->
-              <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded absolute left-0 top-full pl-0 font-medium md:bg-white/90 min-w-[150px] md:min-w-[200px] drop-shadow-xl hidden group-hover:block bg-white/90">
+              <!-- 
+                FIX DARK MODE: 
+                - bg-white: Nền trắng mặc định
+                - dark:bg-gray-900: Nền đen khi dark mode (áp dụng cho cả mobile)
+                - border dark:border-gray-700: Viền nhẹ để phân biệt với nền
+              -->
+              <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[150px] md:min-w-[200px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 md:backdrop-blur-md">
                 <!-- Item: Tiếng Việt -->
                 <li>
                   <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer"
+                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
                     onclick="doGTranslate('vi'); return false;"
                   >
                     🇻🇳 Tiếng Việt
@@ -106,7 +110,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <!-- Item: English -->
                 <li>
                   <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer"
+                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
                     onclick="doGTranslate('en'); return false;"
                   >
                     🇺🇸 English
@@ -115,7 +119,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <!-- Item: Japanese -->
                  <li>
                   <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer"
+                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
                     onclick="doGTranslate('ja'); return false;"
                   >
                     🇯🇵 日本語
@@ -124,7 +128,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                  <!-- Item: Chinese -->
                  <li>
                   <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer"
+                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
                     onclick="doGTranslate('zh-CN'); return false;"
                   >
                     🇨🇳 中文
@@ -142,7 +146,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     
-    <!-- KHU VỰC MENU CHÍNH GIỮA -->
+    <!-- MENU CHÍNH GIỮA -->
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
