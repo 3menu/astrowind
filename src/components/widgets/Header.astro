@@ -276,24 +276,22 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
   }
 </style>
 
-<script is:inline define:vars={{ includedLanguagesConfig }}>
-  // Bây giờ biến 'includedLanguagesConfig' đã tồn tại trong script này nhờ define:vars
-
-  // Gắn hàm vào window để Google Script có thể tìm thấy
-  window.googleTranslateElementInit = function() {
+<script is:inline>
+  function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: includedLanguagesConfig, // <--- Biến từ Server truyền xuống
+      pageLanguage: 'en', // <--- ĐỔI SANG TIẾNG ANH LÀM GỐC
+      includedLanguages: 'en,vi,zh-CN,zh-TW,ja,ko,th,id,es,fr,de,it,pt,ru,tr,ar,nl',
       autoDisplay: false
     }, 'google_translate_element');
   }
 
-  // Gắn hàm xử lý sự kiện vào window luôn cho chắc chắn
-  window.doGTranslate = function(langPair) {
+  function doGTranslate(langPair) {
     const wrapper = document.getElementById('google_translate_element');
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
+    // === LOGIC MỚI: ENGLISH LÀ GỐC ===
+    // Nếu chọn 'en' (Tiếng Anh) -> Reset về trang gốc
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
@@ -301,15 +299,23 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
         return;
     }
 
+    // Nếu chọn ngôn ngữ khác (bao gồm 'vi') -> Dịch
     if (select) {
       const newCookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = newCookie;
       document.cookie = `googtrans=/auto/${langPair}; path=/; domain=${location.hostname}`;
+
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
     }
+
+    // Đóng menu
+    const menus = document.querySelectorAll('.dropdown-menu');
+    menus.forEach(menu => {
+      menu.style.display = 'none';
+      setTimeout(() => { menu.style.display = ''; }, 50);
+    });
+    if (document.activeElement) document.activeElement.blur();
   }
 </script>
-
-<!-- Load Google Script -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
