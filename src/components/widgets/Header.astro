@@ -45,6 +45,25 @@ const {
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+
+// DANH SÁCH 15 NGÔN NGỮ ƯU TIÊN
+const languages = [
+  { code: 'en', name: 'English' },
+  { code: 'zh-CN', name: '简体中文' }, 
+  { code: 'zh-TW', name: '繁體中文' }, 
+  { code: 'es', name: 'Español' },
+  { code: 'pt', name: 'Português' },
+  { code: 'ja', name: '日本語' },
+  { code: 'ko', name: '한국어' },
+  { code: 'vi', name: 'Tiếng Việt' },
+  { code: 'th', name: 'ไทย' },
+  { code: 'id', name: 'Bahasa Indonesia' },
+  { code: 'fr', name: 'Français' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'ru', name: 'Русский' },
+  { code: 'ar', name: 'العربية' },
+  { code: 'hi', name: 'हिन्दी' }
+];
 ---
 
 <header
@@ -85,54 +104,32 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             <li class="dropdown relative group">
               <!-- Nút chọn ngôn ngữ -->
               <button type="button" class="hover:text-link dark:hover:text-white px-1.5 md:px-2 py-3 flex items-center whitespace-nowrap">
-                <Icon name="tabler:language" class="w-5 h-5 md:mr-1" /> 
-                <span class="hidden md:inline">Language</span> 
+                <Icon name="tabler:language" class="w-5 h-5 mr-1" /> 
+                <!-- Đã BỎ class hidden, luôn hiển thị chữ Language -->
+                <span>Language</span> 
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
               <!-- 
                 DROPDOWN MENU:
-                - bg-white: Nền TRẮNG (không trong suốt) cho Light Mode.
-                - dark:bg-gray-900: Nền ĐEN cho Dark Mode.
-                - border: Thêm viền để tách biệt với nội dung bên dưới.
+                - max-h-[60vh] overflow-y-auto: Tạo thanh cuộn nếu danh sách quá dài
+                - min-w-[180px]: Chiều rộng tối thiểu
               -->
-              <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[150px] md:min-w-[200px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50">
-                <!-- Tiếng Việt -->
-                <li>
-                  <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
-                    onclick="doGTranslate('vi'); return false;"
-                  >
-                    🇻🇳 Tiếng Việt
-                  </button>
-                </li>
-                <!-- English -->
-                <li>
-                  <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
-                    onclick="doGTranslate('en'); return false;"
-                  >
-                    🇺🇸 English
-                  </button>
-                </li>
-                <!-- Japanese -->
-                 <li>
-                  <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
-                    onclick="doGTranslate('ja'); return false;"
-                  >
-                    🇯🇵 日本語
-                  </button>
-                </li>
-                 <!-- Chinese -->
-                 <li>
-                  <button 
-                    class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 md:px-5 block whitespace-no-wrap cursor-pointer transition-colors"
-                    onclick="doGTranslate('zh-CN'); return false;"
-                  >
-                    🇨🇳 中文
-                  </button>
-                </li>
+              <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto scrollbar-hide">
+                {
+                  languages.map((lang) => (
+                    <li>
+                      <button 
+                        class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 block whitespace-no-wrap cursor-pointer transition-colors"
+                        onclick={`doGTranslate('${lang.code}')`}
+                        type="button"
+                      >
+                        {/* Hiển thị cờ (tùy chọn) nếu muốn, ở đây hiển thị Tên ngôn ngữ */}
+                        {lang.name}
+                      </button>
+                    </li>
+                  ))
+                }
               </ul>
             </li>
           </ul>
@@ -235,51 +232,29 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div id="google_translate_element" class="hidden-google-widget"></div>
 </header>
 
-<!-- STYLES XỬ LÝ ẨN GOOGLE FRAME VÀ HIỂN THỊ -->
 <style is:global>
-  /* 
-    1. ẨN THANH BANNER GOOGLE TRANSLATE 
-    Tôi sử dụng !important để ghi đè mọi style mà Google cố tình chèn vào.
-  */
-  
-  /* Class chung của Google Banner */
+  /* === ẨN GOOGLE FRAME === */
   .goog-te-banner-frame,
   .skiptranslate iframe,
-  iframe.goog-te-banner-frame {
+  iframe.goog-te-banner-frame,
+  .VIpgJd-ZVi9od-ORHb, 
+  .VIpgJd-ZVi9od-ORHb-OEVmcd {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
   }
   
-  /* Ẩn các phần tử cụ thể dựa trên đoạn mã bạn cung cấp */
-  .VIpgJd-ZVi9od-ORHb, 
-  .VIpgJd-ZVi9od-ORHb-OEVmcd {
-    display: none !important;
-  }
-
-  /* 
-    2. RESET BODY 
-    Google thường thêm top: 40px cho body để đẩy trang xuống.
-    Chúng ta cần reset lại về 0.
-  */
   body {
     top: 0px !important; 
     position: static !important;
   }
   
-  /* Ẩn Widget gốc */
   .hidden-google-widget {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    z-index: -1;
+    top: 0; left: 0; width: 0; height: 0;
+    overflow: hidden; visibility: hidden; z-index: -1;
   }
 
-  /* Ẩn tooltip khi hover */
   .goog-tooltip { display: none !important; }
   .goog-tooltip:hover { display: none !important; }
   .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
@@ -294,7 +269,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'vi',
-      includedLanguages: 'en,vi,ja,zh-CN',
+      // Thêm đủ 15 ngôn ngữ vào đây để Google tải resource
+      includedLanguages: 'en,zh-CN,zh-TW,es,pt,ja,ko,vi,th,id,fr,de,ru,ar,hi',
       autoDisplay: false
     }, 'google_translate_element');
   }
@@ -306,6 +282,24 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     if (select) {
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
+    }
+
+    // === TỰ ĐỘNG ĐÓNG DROPDOWN ===
+    // Tìm tất cả các menu đang mở
+    const menus = document.querySelectorAll('.dropdown-menu');
+    menus.forEach(menu => {
+      // Ẩn tạm thời bằng CSS inline
+      menu.style.display = 'none';
+      
+      // Sau 50ms (rất nhanh), xóa style inline để hover hoạt động lại bình thường cho lần sau
+      setTimeout(() => {
+        menu.style.display = ''; 
+      }, 50);
+    });
+
+    // Mất focus khỏi nút vừa bấm để tránh trạng thái :focus giữ menu mở
+    if (document.activeElement) {
+      document.activeElement.blur();
     }
   }
 </script>
