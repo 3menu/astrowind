@@ -276,22 +276,25 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
   }
 </style>
 
-<script is:inline>
+<!-- Dùng define:vars để lấy biến từ Server -->
+<script is:inline define:vars={{ includedLanguagesConfig }}>
+  
+  // 1. Hàm khởi tạo của Google
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
-      pageLanguage: 'en', // <--- ĐỔI SANG TIẾNG ANH LÀM GỐC
-      includedLanguages: 'en,vi,zh-CN,zh-TW,ja,ko,th,id,es,fr,de,it,pt,ru,tr,ar,nl',
+      pageLanguage: 'en', // Gốc là tiếng Anh
+      includedLanguages: includedLanguagesConfig, // <--- ĐÃ ÁP DỤNG BIẾN CỦA BẠN VÀO ĐÂY
       autoDisplay: false
     }, 'google_translate_element');
   }
 
+  // 2. Hàm xử lý logic chuyển đổi
   function doGTranslate(langPair) {
     const wrapper = document.getElementById('google_translate_element');
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
     // === LOGIC MỚI: ENGLISH LÀ GỐC ===
-    // Nếu chọn 'en' (Tiếng Anh) -> Reset về trang gốc
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
@@ -299,7 +302,7 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
         return;
     }
 
-    // Nếu chọn ngôn ngữ khác (bao gồm 'vi') -> Dịch
+    // Nếu chọn ngôn ngữ khác -> Dịch
     if (select) {
       const newCookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = newCookie;
@@ -309,7 +312,7 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
       select.dispatchEvent(new Event('change'));
     }
 
-    // Đóng menu
+    // Đóng menu (giữ nguyên code của bạn)
     const menus = document.querySelectorAll('.dropdown-menu');
     menus.forEach(menu => {
       menu.style.display = 'none';
@@ -317,5 +320,12 @@ const includedLanguagesConfig = languages.map(lang => lang.code).join(',');
     });
     if (document.activeElement) document.activeElement.blur();
   }
+
+  // === QUAN TRỌNG: PHẢI CÓ ĐOẠN NÀY KHI DÙNG define:vars ===
+  // Vì define:vars cô lập script, ta phải gắn hàm vào window 
+  // để Google Translate và HTML onclick có thể gọi được.
+  window.googleTranslateElementInit = googleTranslateElementInit;
+  window.doGTranslate = doGTranslate;
+
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
