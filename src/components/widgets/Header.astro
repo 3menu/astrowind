@@ -69,31 +69,13 @@ const languages = [
 ---
 
 <header
-  class:list={[
-    { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
-  ]}
+  class:list={[{ sticky: isSticky, relative: !isSticky, dark: isDark }, 'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out']}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
 >
   <div class="absolute inset-0"></div>
-  <div
-    class:list={[
-      'relative text-default py-3 px-3 md:px-6 mx-auto w-full',
-      {
-        'md:flex md:justify-between': position !== 'center',
-      },
-      {
-        'md:grid md:grid-cols-3 md:items-center': position === 'center',
-      },
-      {
-        'max-w-7xl': !isFullWidth,
-      },
-    ]}
-  >
-    <!-- KHU VỰC BÊN TRÁI: LOGO + TRANSLATE -->
+  <div class:list={['relative text-default py-3 px-3 md:px-6 mx-auto w-full', { 'md:flex md:justify-between': position !== 'center' }, { 'md:grid md:grid-cols-3 md:items-center': position === 'center' }, { 'max-w-7xl': !isFullWidth }]}>
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between items-center']}>
-      
       <div class="flex items-center">
         <a class="flex items-center" href={getHomePermalink()}>
           <Logo />
@@ -109,133 +91,68 @@ const languages = [
                 <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
               </button>
               
-              <ul class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto scrollbar-hide">
-                {
-                  languages.map((lang) => (
-                    <li>
-                      <button 
-                        class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 block whitespace-no-wrap cursor-pointer transition-colors"
-                        onclick={`doGTranslate('${lang.code}')`}
-                        type="button"
-                      >
-                        {lang.name}
-                      </button>
-                    </li>
-                  ))
-                }
+              <ul id="language-dropdown-menu" class="dropdown-menu rounded absolute left-0 top-full pl-0 font-medium min-w-[180px] drop-shadow-xl hidden group-hover:block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 z-50 max-h-[60vh] overflow-y-auto scrollbar-hide">
+                {languages.map((lang) => (
+                  <li>
+                    <button class="w-full text-left first:rounded-t last:rounded-b hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 hover:text-link dark:hover:text-white py-2 px-4 block whitespace-no-wrap cursor-pointer transition-colors" onclick={`doGTranslate('${lang.code}')`} type="button">{lang.name}</button>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
         </div>
       </div>
-
-      <div class="flex items-center md:hidden">
-        <ToggleMenu />
-      </div>
+      <div class="flex items-center md:hidden"><ToggleMenu /></div>
     </div>
     
-    <nav
-      class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
-      aria-label="Main navigation"
-    >
-      <ul
-        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
-      >
-        {
-          links.map(({ text, href, links }) => (
-            <li class={links?.length ? 'dropdown' : ''}>
-              {links?.length ? (
-                <>
-                  <button
-                    type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
-                  >
-                    {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
-                  </button>
-                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-                    {links.map(({ text: text2, href: href2 }) => (
-                      <li>
-                        <a
-                          class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
-                            { 'aw-link-active': href2 === currentPath },
-                          ]}
-                          href={href2}
-                        >
-                          {text2}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                <a
-                  class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
-                    { 'aw-link-active': href === currentPath },
-                  ]}
-                  href={href}
-                >
-                  {text}
-                </a>
-              )}
-            </li>
-          ))
-        }
+    <!-- (Giữ nguyên phần nav và actions của bạn...) -->
+    <nav class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center">
+       <ul class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center">
+        {links.map(({ text, href, links }) => (
+          <li class={links?.length ? 'dropdown' : ''}>
+            {links?.length ? (
+              <><button type="button" class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap">{text}<Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" /></button>
+              <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                {links.map(({ text: text2, href: href2 }) => (
+                  <li><a class:list={['first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap', { 'aw-link-active': href2 === currentPath }]} href={href2}>{text2}</a></li>
+                ))}
+              </ul></>
+            ) : (
+              <a class:list={['hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap', { 'aw-link-active': href === currentPath }]} href={href}>{text}</a>
+            )}
+          </li>
+        ))}
       </ul>
     </nav>
-    <div
-      class:list={[
-        { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
-      ]}
-    >
+    <div class:list={[{ 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' }, 'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end']}>
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex">
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
-          {
-            showRssFeed && (
-              <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                aria-label="RSS Feed"
-                href={getAsset('/rss.xml')}
-              >
-                <Icon name="tabler:rss" class="w-5 h-5" />
-              </a>
-            )
-          }
+          {showRssFeed && <a class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center" aria-label="RSS Feed" href={getAsset('/rss.xml')}><Icon name="tabler:rss" class="w-5 h-5" /></a>}
         </div>
-        {
-          actions?.length ? (
-            <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
-              ))}
-            </span>
-          ) : (
-            ''
-          )
-        }
+        {actions?.length ? <span class="ml-4 rtl:ml-0 rtl:mr-4">{actions.map((btnProps) => <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />)}</span> : ''}
       </div>
     </div>
   </div>
-  
   <div id="google_translate_element" class="hidden-google-widget"></div>
 </header>
 
 <style is:global>
-  /* === 1. ẨN CÁC PHẦN TỬ GIAO DIỆN CỦA GOOGLE === */
+  /* --- CÁC PHẦN TỬ GOOGLE (Giữ nguyên) --- */
   .goog-te-banner-frame, .skiptranslate iframe, iframe.goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb, .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; visibility: hidden !important; height: 0 !important; }
   #goog-gt-tt, .goog-te-balloon-frame { display: none !important; visibility: hidden !important; pointer-events: none !important; opacity: 0 !important; }
   body { top: 0px !important; position: static !important; }
   .hidden-google-widget { position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden; visibility: hidden; z-index: -1; }
-  .goog-tooltip { display: none !important; } .goog-tooltip:hover { display: none !important; }
+  .goog-tooltip { display: none !important; }
+  .goog-tooltip:hover { display: none !important; }
   .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
   
-  /* Hỗ trợ hiển thị menu khi hover */
-  li.dropdown:hover > .dropdown-menu {
-      display: block;
+  /* --- HOVER CHO DESKTOP --- */
+  li.dropdown:hover > .dropdown-menu { display: block; }
+
+  /* --- FIX CHO MOBILE: CLASS ÉP ẨN --- */
+  .force-hide {
+    display: none !important;
   }
 </style>
 
@@ -248,13 +165,14 @@ const languages = [
     }, 'google_translate_element');
   }
 
-  // HÀM XỬ LÝ DỊCH VÀ ĐÓNG DROPDOWN
   function doGTranslate(langPair) {
     const wrapper = document.getElementById('google_translate_element');
+    const menu = document.getElementById('language-dropdown-menu'); // Lấy chính xác menu này
+    
     if(!wrapper) return;
     const select = wrapper.querySelector('select.goog-te-combo');
 
-    // --- Logic Reload khi chọn English (Gốc) ---
+    // 1. Xử lý dịch và Cookie
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
@@ -262,44 +180,29 @@ const languages = [
         return;
     }
 
-    // --- Logic Dịch khi chọn ngôn ngữ khác ---
     if (select) {
-      const newCookie = `googtrans=/auto/${langPair}; path=/;`;
-      document.cookie = newCookie;
+      document.cookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = `googtrans=/auto/${langPair}; path=/; domain=${location.hostname}`;
-
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
     }
 
-    // --- ĐÓNG DROPDOWN SAU KHI CHỌN (Quan trọng cho Mobile) ---
-    const menus = document.querySelectorAll('.dropdown-menu');
-    menus.forEach(menu => {
-      // Cách 1: Ẩn ngay lập tức
-      // menu.style.display = 'none';
-
-      // Cách 2 (Phổ biến hơn): Kích hoạt sự kiện 'mouseleave' giả
-      // Điều này có thể giúp đóng menu theo cơ chế gốc của CSS (hover)
-      // Tuy nhiên, trên mobile sự kiện này có thể không hoạt động như mong đợi
-      // Nên ta sẽ dùng cách ẩn/hiện trực tiếp để đảm bảo
+    // 2. PHẦN QUAN TRỌNG: FIX CHO MOBILE
+    if (menu) {
+      // Thêm class ép ẩn ngay lập tức (ghi đè :hover của mobile)
+      menu.classList.add('force-hide');
       
-      // *** Cập nhật logic đóng menu: Dùng cách ẩn/hiện trực tiếp + blur button ***
-      menu.classList.add('hidden'); // Sử dụng class hidden của Tailwind để ẩn
-    });
+      // Sau 500ms (đủ thời gian để thao tác touch kết thúc), gỡ class để lần sau hover vẫn hiện
+      setTimeout(() => {
+        menu.classList.remove('force-hide');
+      }, 500);
+    }
 
-    // Sau khi ẩn, cần cho trình duyệt 1 chút thời gian để render,
-    // rồi mới remove class 'hidden' để hover lại hoạt động
-    setTimeout(() => {
-      menus.forEach(menu => {
-        menu.classList.remove('hidden');
-      });
-    }, 50); // Khoảng thời gian rất ngắn
-
-    // Loại bỏ focus khỏi nút vừa bấm để menu tự động đóng
-    // Điều này quan trọng cho cả mobile và desktop
-    if (document.activeElement && document.activeElement !== document.body) {
-      document.activeElement.blur();
+    // Blur để mất focus trên các trình duyệt mobile
+    if (document.activeElement) {
+        document.activeElement.blur();
     }
   }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
+
