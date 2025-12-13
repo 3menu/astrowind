@@ -59,7 +59,7 @@ export const footerData = {
     {
       title: 'Explore', // Cột 3 (Đổi từ Infomation)
       links: [
-        { text: 'About Us', href: '/about' },
+        { text: 'About FAR QR', href: '/about' },
         { text: 'Blog', href: '/blog' },
         { text: 'Contact', href: '/contact' },
       ],
