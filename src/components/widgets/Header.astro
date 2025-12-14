@@ -1,4 +1,6 @@
 ---
+// v1.2 - Header.astro
+// Cập nhật: Fix lỗi Google Translate không hoạt động khi chuyển trang (Astro View Transitions)
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
@@ -228,6 +230,7 @@ const languages = [
 </header>
 
 <style is:global>
+  /* CSS Google Translate - v1.2 */
   .goog-te-banner-frame,
   .skiptranslate iframe,
   iframe.goog-te-banner-frame,
@@ -257,55 +260,99 @@ const languages = [
   }
 </style>
 
+<!-- SCRIPT FIX CHO ASTRO VIEW TRANSITIONS v1.2 -->
 <script is:inline>
+  // Hàm khởi tạo Google Translate (được gọi bởi script của Google)
   function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,vi,zh-CN,zh-TW,ja,ko,th,id,es,fr,de,it,pt,ru,tr,ar,nl',
-      autoDisplay: false
-    }, 'google_translate_element');
+    if (window.google && window.google.translate) {
+      new window.google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,vi,zh-CN,zh-TW,ja,ko,th,id,es,fr,de,it,pt,ru,tr,ar,nl',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
   }
 
-  function doGTranslate(langPair) {
+  // Đảm bảo hàm này nằm trên window để Google gọi được
+  window.googleTranslateElementInit = googleTranslateElementInit;
+
+  // Hàm xử lý chọn ngôn ngữ
+  window.doGTranslate = function(langPair) {
     const wrapper = document.getElementById('google_translate_element');
     if(!wrapper) return;
+    
     const select = wrapper.querySelector('select.goog-te-combo');
 
-    // === XỬ LÝ RTL (Right-to-Left) ===
-    const rtlCodes = ['ar', 'he', 'fa', 'ur']; // Danh sách các mã ngôn ngữ RTL
+    // === XỬ LÝ RTL ===
+    const rtlCodes = ['ar', 'he', 'fa', 'ur'];
     const htmlTag = document.documentElement;
-
     if (rtlCodes.includes(langPair)) {
       htmlTag.setAttribute('dir', 'rtl');
-      htmlTag.classList.add('rtl'); // Thêm class để Tailwind hỗ trợ tốt hơn nếu cần
+      htmlTag.classList.add('rtl');
     } else {
       htmlTag.setAttribute('dir', 'ltr');
       htmlTag.classList.remove('rtl');
     }
-    // ==================================
+    // =================
 
+    // Xử lý về ngôn ngữ gốc (English)
     if (langPair === 'en') {
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
-        location.reload();
+        window.location.reload(); // Reload bắt buộc để xóa sạch dịch
         return;
     }
 
+    // Trigger thay đổi ngôn ngữ
     if (select) {
-      const newCookie = `googtrans=/auto/${langPair}; path=/;`;
-      document.cookie = newCookie;
+      document.cookie = `googtrans=/auto/${langPair}; path=/;`;
       document.cookie = `googtrans=/auto/${langPair}; path=/; domain=${location.hostname}`;
       select.value = langPair;
       select.dispatchEvent(new Event('change'));
     }
 
+    // Đóng dropdown UI (hiệu ứng visual)
     if (document.activeElement) document.activeElement.blur();
-    
     const dropdownParents = document.querySelectorAll('.dropdown');
     dropdownParents.forEach(parent => {
       parent.style.pointerEvents = 'none';
       setTimeout(() => { parent.style.pointerEvents = ''; }, 200);
     });
   }
+
+  // === CORE FIX CHO ASTRO VIEW TRANSITIONS v1.2 ===
+  // Sự kiện này chạy mỗi khi trang load xong (cả lần đầu và sau khi chuyển trang)
+  document.addEventListener('astro:page-load', () => {
+    
+    // Kiểm tra xem widget đã được render chưa
+    const widgetDiv = document.getElementById('google_translate_element');
+    const isWidgetEmpty = widgetDiv && !widgetDiv.hasChildNodes();
+
+    // Nếu widget rỗng hoặc script chưa chạy, ta sẽ inject lại script
+    // Google Translate script rất khó khởi tạo lại, nên cách tốt nhất là xóa script cũ và add script mới
+    const scriptId = 'google-translate-script';
+    const oldScript = document.getElementById(scriptId);
+    
+    if (oldScript) {
+      oldScript.remove(); // Xóa script cũ để force browser load lại
+    }
+
+    const newScript = document.createElement('script');
+    newScript.id = scriptId;
+    newScript.type = 'text/javascript';
+    newScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(newScript);
+    
+    // Duy trì RTL state nếu người dùng đang ở chế độ tiếng Ả Rập, v.v. sau khi chuyển trang
+    const cookies = document.cookie.split(';');
+    const googtrans = cookies.find(c => c.trim().startsWith('googtrans='));
+    if (googtrans) {
+      const lang = googtrans.split('/').pop();
+      const rtlCodes = ['ar', 'he', 'fa', 'ur'];
+      if (lang && rtlCodes.includes(lang)) {
+        document.documentElement.setAttribute('dir', 'rtl');
+        document.documentElement.classList.add('rtl');
+      }
+    }
+  });
 </script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" is:inline></script>
